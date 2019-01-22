@@ -1,0 +1,35 @@
+import myScanner.MyScanner2;
+
+public class Q_06 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		double[] temperature = new double[7];
+		double max = 0;
+		double temp;
+		
+		System.out.println("*** INPUT ***");
+		for (int i = 0; i < temperature.length; i++) {
+			temp = MyScanner2.getDouble("Day " + (i + 1), -5, 30 );
+			temperature[i] = Math.floor(temp * 10) / 10;
+		}
+
+		System.out.println("\n*** OUTPUT ***");
+		for (int i = 0; i < temperature.length; i++) {
+			System.out.println("Day " + (i + 1) + ": " + temperature[i]);
+		}
+
+		//calculate max
+		max = temperature[0];
+		for (double t : temperature) 
+			if (t > max)
+				max = t;
+		
+		
+		System.out.println("Highest Temp For Week: " + max);
+		
+
+	}
+
+}

@@ -1,0 +1,31 @@
+import java.awt.Dimension;
+import java.util.Calendar;
+
+import javax.swing.JFrame;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.printf("-> %28.25f <-%n%04x%n", Math.PI, 11);
+		Calendar c = Calendar.getInstance();
+		System.out.printf("%te %tB %tY%n", c, c, c);
+		//1. Create the frame.
+		JFrame frame = new JFrame("FrameDemo");
+
+		//2. Optional: What happens when the frame closes?
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		//3. Create components and put them in the frame.
+		//...create emptyLabel...
+		//frame.getContentPane().add(emptyLabel, BorderLayout.CENTER);
+		frame.setSize(new Dimension(500, 300));
+
+		//4. Size the frame.
+		//frame.pack();
+
+		//5. Show it.
+		frame.setVisible(true);
+	}
+
+}

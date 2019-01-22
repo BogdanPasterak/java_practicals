@@ -1,0 +1,15 @@
+import myScanner.MyScanner2;
+
+public class Q_03 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		double princ, rate, t;
+		
+		princ = MyScanner2.getDouble("Principle (amount): ", 10000);
+		princ = Math.floor(princ);
+		System.out.println(princ);
+	}
+
+}

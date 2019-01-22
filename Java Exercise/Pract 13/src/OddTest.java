@@ -1,0 +1,19 @@
+
+public class OddTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		if ( isOdd(2) )
+			System.out.println("ODD");
+		else
+			System.out.println("EVEN");
+		
+	}
+	
+	public static boolean isOdd(int number) {
+		
+		return number % 2 == 1;
+	}
+
+}

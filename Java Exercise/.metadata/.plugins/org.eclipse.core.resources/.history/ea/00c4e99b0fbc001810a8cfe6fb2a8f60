@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Q1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		int nr1, nr2, hoursWork, hours, minutes;
+		double rate;
+		
+		// A
+		
+		System.out.print("Enter integer nr 1:");
+		nr1 =sc.nextInt();
+		System.out.print("Enter integer nr 2:");
+		nr2 =sc.nextInt();
+		System.out.println("Sum of "+ nr1 + " and " + nr2 + " is " +(nr1 +nr2));
+		
+	}
+
+}

@@ -1,0 +1,12 @@
+
+public class ArrayTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] arr = {2,3,4};
+		float[] arrf = {};
+		System.out.println(arrf.length);
+	}
+
+}

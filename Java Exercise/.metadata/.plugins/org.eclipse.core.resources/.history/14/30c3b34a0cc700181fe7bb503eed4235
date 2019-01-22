@@ -1,0 +1,26 @@
+package myScanner;
+
+public class Q_04 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s;
+		int space = 0;
+		
+		s = MyScanner2.getString("Enter some text", MyScanner2.STRINGS.NAME);
+		System.out.println("You text ->" + s + "<-");
+		
+		for (int i = 0; i < s.length(); i++) 
+			if ((s.charAt(i) == ' ' || s.charAt(i) == '_' || s.charAt(i) == '-') &&
+					i > 0 && (
+							s.charAt(i-1) == ' ' ||
+							s.charAt(i-1) == '_' ||
+							s.charAt(i-1) == '-') )
+				space++;
+		
+		System.out.println("There are " + (space + 1) + " words in your text");
+
+		
+	}
+
+}

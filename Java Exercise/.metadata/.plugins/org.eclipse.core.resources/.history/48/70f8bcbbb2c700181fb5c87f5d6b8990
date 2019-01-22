@@ -1,0 +1,36 @@
+package myScanner;
+
+public class Q_07 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		final double EUR_USD= 1.20;
+		final double GBP_EUR= 1.30;
+		final double USD_GBP= 1.40;
+		String money, currencyFrom, currencyTo;
+		double amount;
+		
+		
+		money = MyScanner2.getString("Enter the money to be exchanged e.g.(€20.00)", "€20.00", "€10.00", "£5.00");
+		System.out.println("You entred ->" + money + "<-");
+		
+		if (money.startsWith("€") || money.startsWith("£") || money.startsWith("$") ) {
+			currencyFrom = money.substring(0, 1);
+			money = money.substring(1);
+			System.out.println(currencyFrom + " " +money);
+			try {
+				amount = Double.parseDouble(money);
+				
+			} catch (Exception e) {
+				System.out.println("This is not a number  " + e.getMessage());
+			}
+			
+		} else {
+			System.out.println("This data does not start with currency");
+		}
+		
+
+	}
+
+}

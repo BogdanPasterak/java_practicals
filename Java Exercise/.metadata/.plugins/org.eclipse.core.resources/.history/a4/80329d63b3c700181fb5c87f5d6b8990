@@ -1,0 +1,67 @@
+package myScanner;
+
+public class Q_07 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		final double EUR_USD = 1.20;
+		final double GBP_EUR = 1.30;
+		final double USD_GBP = 1.40;
+		String money, currencyFrom, currencyTo, fromTo;
+		double amount;
+
+		money = MyScanner2.getString("Enter the money to be exchanged e.g.(€20.00)", "€20.00", "$10.00", "£5.00");
+		System.out.println("You entred ->" + money + "<-");
+
+		if (money.startsWith("€") || money.startsWith("£") || money.startsWith("$")) {
+			currencyFrom = money.substring(0, 1);
+			money = money.substring(1);
+			// System.out.println(currencyFrom + " " +money);
+			try {
+				amount = Double.parseDouble(money);
+				currencyTo = MyScanner2.getString("Which currency exchange £ or € or $", "€", "$", "£");
+				currencyTo = currencyTo.substring(0, 1);
+				System.out.println("You entred ->" + currencyTo + "<-");
+				if (currencyTo.equals("€") || currencyTo.equals("£") || currencyTo.equals("$")) {
+					fromTo = currencyFrom + currencyTo;
+					switch (fromTo) {
+					case "€$":
+						amount *= EUR_USD;
+						break;
+					case "$€":
+						amount /= EUR_USD;
+						break;
+					case "£€":
+						amount *= GBP_EUR;
+						break;
+					case "€£":
+						amount /= GBP_EUR;
+						break;
+					case "$£":
+						amount *= USD_GBP;
+						break;
+					case "£$":
+						amount /= USD_GBP;
+						break;
+					default:
+						break;
+					}
+					
+					System.out.printf("You will receive %s%0.2f%n", currencyTo , amount);
+					
+				} else {
+					System.out.println("This data is not currency");
+				}
+
+			} catch (Exception e) {
+				System.out.println("This is not a number  " + e.getMessage());
+			}
+
+		} else {
+			System.out.println("This data does not start with currency");
+		}
+
+	}
+
+}

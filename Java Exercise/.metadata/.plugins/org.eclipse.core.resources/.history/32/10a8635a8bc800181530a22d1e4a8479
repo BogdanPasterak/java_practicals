@@ -1,0 +1,19 @@
+import myScanner.MyScanner2;
+
+public class Q_04 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		double a, b, c, answer;
+		
+		a = MyScanner2.getDouble("a = ", -10, 10);
+		b = MyScanner2.getDouble("b = ", -20, 20);
+		c = MyScanner2.getDouble("a = ", -100, 100);
+		
+		answer = b * b - 4 * a * c;
+		System.out.println("Dyscriminant = " + answer);
+		
+	}
+
+}

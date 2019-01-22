@@ -1,0 +1,15 @@
+
+public class TestEscape {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String s = "She said \"Hello!\'` to me.\n\\\r:)\n\\";
+		
+		System.out.println(s);
+		
+		char ch = 0b01010000;
+		System.out.println(ch);
+	}
+
+}

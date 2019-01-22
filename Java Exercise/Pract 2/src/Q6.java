@@ -1,0 +1,19 @@
+
+public class Q6 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String name = "Joe Soap";
+		String ppsNumber = "8069AB";
+		String socialWelfarePayment = "Job Seekers Benefit";
+		float weeklyPayment = 100.00f;
+		
+		System.out.println("*!*!*Social Welfare Details*!*!*");
+		System.out.println("Name: " + name);
+		System.out.println("PPS Number: " + ppsNumber);
+		System.out.println("Social Welfare Payment: " + socialWelfarePayment);
+		System.out.printf("Weekly Payment: %.2f%n", weeklyPayment);
+	}
+
+}

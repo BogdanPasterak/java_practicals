@@ -1,0 +1,15 @@
+
+public class TestByte {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		byte bVar = 127;
+		bVar++;
+		
+		System.out.println(bVar);
+		
+
+	}
+
+}

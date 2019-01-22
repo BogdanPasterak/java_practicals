@@ -1,0 +1,15 @@
+package myScanner;
+
+public class Q_04 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String s;
+		
+		s = MyScanner2.getString("Enter a Date (DD/MM/YYYY) : ", "03/10/2018");
+		System.out.println("You entred ---" + s + "---");
+		
+	}
+
+}

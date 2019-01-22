@@ -1,0 +1,54 @@
+
+
+import myScanner.MyScanner2;
+
+public class Q_06 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String date, s;
+		String[] parts;
+		
+		date = MyScanner2.getString("Enter a Date (DD/MM/YYYY) : ", "03/10/2018");
+		System.out.println("You entred ---" + date + "---");
+		
+		if (date.length() == 10 && date.charAt(2) == '/' && date.charAt(5) == '/') {
+			parts = date.split("/");
+			try {
+				int i = Integer.parseInt(parts[0]);
+				i = Integer.parseInt(parts[1]);
+				i = Integer.parseInt(parts[2]);
+				for (String string : parts) {
+					System.out.println(string + ": Value Goes Here");
+				}
+			} catch (Exception e) {
+				System.out.println("This is not a number  " + e.getMessage());
+			}
+		}
+		
+		System.out.println();
+		s = MyScanner2.getString("Enter a Time (HH:MM AM) : ", "03:29 PM");
+		System.out.println("You entred ---" + s + "---");
+
+		if (s.length() == 8 && s.charAt(2) == ':' && s.charAt(5) == ' ') {
+			parts = s.split(":| ");
+
+			try {
+				int i = Integer.parseInt(parts[0]);
+				i = Integer.parseInt(parts[1]);
+				if (parts[2].equals("AM") || parts[2].equals("PM"))
+					for (String string : parts)
+						System.out.println(string + ": Value Goes Here");
+				else
+					System.out.println(parts[2] + " is not AM or PM");
+
+			} catch (Exception e) {
+				System.out.println("This is not a number  " + e.getMessage());
+			}
+
+		}
+
+
+	}
+
+}

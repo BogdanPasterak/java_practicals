@@ -1,0 +1,15 @@
+
+public class StringTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		double d = Double.parseDouble("1");
+		
+		System.out.println(d);
+		
+		System.out.println("".getClass());
+		
+	}
+
+}

@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class MyScanner {
+	public static final boolean NOT_EMPTY = true;
+	public static final boolean CAN_BE_EMPTY = false;
+
+	private static Scanner sc;
+	private static String takenS;
+	private static int takenI;
+	
+	private static void isScanner() {
+		if (sc == null) {
+			sc = new Scanner(System.in);
+		}
+	}
+	
+	public static String getString() {
+
+		return getString("Type line : ");
+	}
+
+	public static String getString(String info) {
+		
+		isScanner();
+		
+		if ( info.length() == 0 )
+			info = "Type line : ";
+		else if ( info.endsWith(":") )
+			info += " ";
+		else if ( ! info.endsWith(": ") )
+			info += " : ";
+		System.out.print(info);
+		takenS = sc.nextLine();
+		
+		return takenS;
+	}
+	
+	public static String getString( String info, boolean notEmpty) {
+		
+		getString(info);
+
+		while( notEmpty && takenS.length() == 0 ){
+			System.out.println("Try again, String can't be empty");
+			getString(info);
+		}
+		
+		return takenS;
+	}
+	
+	public static int getInt() {
+		 
+		return getInt("Type int");
+	}
+
+	public static int getInt(String info) {
+		 
+		isScanner();
+		
+		if ( info.length() == 0 )
+			info = "Type int : ";
+		else if ( info.endsWith(":") )
+			info += " ";
+		else if ( ! info.endsWith(": ") )
+			info += " : ";
+		System.out.print(info);
+		takenS = sc.nextLine();
+
+		try {
+			takenI = Integer.parseInt(takenS);
+		} catch (Exception e) {
+			System.out.println("MAM   " + e.getMessage());
+		}
+		
+		
+		
+		
+		return takenI;
+	}
+
+}

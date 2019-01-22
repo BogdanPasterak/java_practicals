@@ -1,0 +1,28 @@
+
+public class TestLiterals {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int dec = 100,
+			oct = 0100,
+			hex = 0x100,
+			bin = 0b100;
+		
+		System.out.println("Decymal = " + dec);
+		System.out.println("Octal   = " + oct);
+		System.out.println("Hexadec = " + hex);
+		System.out.println("Binary  = " + bin);
+		
+		dec = 101;
+		oct = 0100;
+		hex = 0xFace;
+		bin = 0b1111;
+
+		System.out.println("Decymal = " + dec);
+		System.out.println("Octal   = " + oct);
+		System.out.println("Hexadec = " + hex);
+		System.out.println("Binary  = " + bin);
+
+	}
+
+}

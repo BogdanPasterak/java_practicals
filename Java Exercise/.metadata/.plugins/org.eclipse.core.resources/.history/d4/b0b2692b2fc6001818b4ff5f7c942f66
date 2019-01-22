@@ -1,0 +1,53 @@
+
+public class ArrayCDNTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int array[] = new int[] { 10, 11, 88, 2, 12, 120 };
+
+		// Calling getMax() method for getting max value
+		int max = getMax(array);
+		System.out.println("Maximum Value is: " + max);
+
+		// Calling getMin() method for getting min value
+		int min = getMin(array);
+		System.out.println("Minimum Value is: " + min);
+
+		for (int i : array) {
+			System.out.println(i);
+		}
+		
+	}
+
+	private static int getMin(int[] array) {
+		// TODO Auto-generated method stub
+		int min = array[0];
+		for (int i = 1; i < array.length; i++)
+			if (min > array[i])
+				min = array[i];
+		
+		for (int i = 0; i < array.length; i++) {
+			array[i] = 0;
+		}
+		
+		for (int i : array) {
+			System.out.println(i);
+		}
+		
+		return min;
+	}
+
+	private static int getMax(int[] array) {
+		// TODO Auto-generated method stub
+		int max = array[0];
+		for (int i = 1; i < array.length; i++)
+			if (max < array[i])
+				max = array[i];
+		
+		return max;
+	}
+
+
+
+}

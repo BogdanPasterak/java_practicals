@@ -1,0 +1,14 @@
+import myScanner.MyScanner2;
+
+public class Q_01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String s;
+		
+		s = MyScanner2.getString("Enter your name", MyScanner2.STRINGS.FIRST_NAME);
+		System.out.println("You text ---" + s + "---");
+	}
+
+}

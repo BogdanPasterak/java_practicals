@@ -1,0 +1,35 @@
+import myScanner.MyScanner2;
+
+public class GradesStatistic {
+	public static int[] grades;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		readGrades();
+		printGrades();
+		
+	}
+
+	public static void printGrades() {
+		// TODO Auto-generated method stub
+		System.out.print("Grades: [");
+		for (int i = 0; i < grades.length; i++) {
+			System.out.print(grades[i] + ((i < grades.length - 1) ? ", " : "]\n"));
+		}
+		
+	}
+
+	public static void readGrades() {
+		int n;
+		
+		n = MyScanner2.getInt("Enter the number of students: ", 10);
+		
+		grades = new int[n];
+		
+		for (int i = 0; i < grades.length; i++) {
+			grades[i] = MyScanner2.getInt("Enter the grade for student: ", 100);
+		}
+	}
+
+}

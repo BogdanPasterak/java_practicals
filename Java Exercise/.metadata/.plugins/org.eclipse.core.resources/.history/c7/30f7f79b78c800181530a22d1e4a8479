@@ -1,0 +1,29 @@
+
+public class CastingTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		//String s = String.valueOf('A');
+		
+		byte b = 100;
+		int i = 2000000;
+		double d = 23.533;
+		char c = '€';
+		short s = (short)c;
+		Double dob = d;
+		
+		d = b;
+		
+		i = c;
+		b = (byte)c;
+		System.out.println(c);
+		System.out.printf("%h%n",i);
+		System.out.println(s);
+		System.out.println(b);
+		
+		
+		
+	}
+
+}

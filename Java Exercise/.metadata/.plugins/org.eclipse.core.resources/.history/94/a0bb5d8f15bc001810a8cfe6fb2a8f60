@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Q3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		
+		int years, months, days;
+		
+		System.out.print("How old are you (years) ? : ");
+		years = sc.nextInt();
+		System.out.print("How many extra months ? : ");
+		months = sc.nextInt();
+		days = years *365 + months * 30;
+		System.out.println("You live " + days + " days.");
+
+	}
+
+}

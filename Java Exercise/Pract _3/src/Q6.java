@@ -1,0 +1,14 @@
+
+public class Q6 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int i=5, j=5, sum =0;
+		
+		System.out.println("i="+i+"   j="+j+"   sum="+sum);
+		sum = i + j++;
+		System.out.println("i="+i+"   j="+j+"   sum="+sum);
+
+	}
+
+}

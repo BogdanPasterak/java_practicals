@@ -1,0 +1,38 @@
+
+public class Q_02 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[][] board = { { 20, 15, 6, 19, 18 }, { 4, 46, 24, 17, 18 }, { 12, 50, 23, 16, 31 } };
+		
+		printMatrix(board);
+		System.out.println();
+		sumRows(board);
+		System.out.println();
+		//largestInRows(board);
+		
+	}
+
+	private static void sumRows(int[][] board) {
+		
+		int[] sumRows = new int[board.length];
+
+		for (int row = 0; row <board.length; row++) {
+			for (int each : sumRows) 
+				sumRows[row] += each;
+			System.out.println("The sum of row " + (row + 1) + " = " + sumRows[row]);
+		}
+		
+	}
+
+	private static void printMatrix(int[][] board) {
+		// TODO Auto-generated method stub
+		for (int[] row : board) {
+			for (int each : row)
+				System.out.print("\t" + ((each < 10)?" ":"") + each);
+			System.out.println();
+		}
+	}
+
+}

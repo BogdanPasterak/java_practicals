@@ -1,0 +1,47 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class MyForm extends JFrame {
+	
+	JLabel myLabel;
+	JButton myButton;
+	JTextField myTextField;
+	JTextArea myTextArea;
+	JPanel myPanel;
+	
+	public MyForm() {
+		this.setTitle("My Frame");
+		this.setLayout(new BorderLayout());
+		myLabel = new JLabel("Bogdan");
+		this.add(myLabel, BorderLayout.CENTER);
+		myButton = new JButton("Click !");
+		this.add(myButton, BorderLayout.SOUTH);
+		myTextField = new JTextField();
+		this.add(myTextField, BorderLayout.NORTH);
+		myTextArea = new JTextArea("Pasterak");
+		this.add(myTextArea, BorderLayout.WEST);
+		myPanel = new JPanel();
+		myPanel.setPreferredSize(new Dimension(100, 20));
+		myPanel.setBackground(Color.BLUE);
+		this.add(myPanel, BorderLayout.EAST);
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyForm f = new MyForm();
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+		f.pack();
+	}
+
+}

@@ -1,0 +1,59 @@
+import java.util.Random;
+
+public class CastingTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		//String s = String.valueOf('A');
+		
+		byte b = 100;
+		int i = 2000000;
+		double d = 23.533;
+		char c = '€';
+		short s = (short)c;
+		Double dob = d;
+		Integer in = 66;
+		
+		d = b;
+		b = in.byteValue();
+		
+		i = c;
+		b = (byte)c;
+		System.out.println(c);
+		System.out.printf("%h%n",i);
+		System.out.println(s);
+		System.out.println(b);
+		
+		i = 65260;
+		b = (byte) i;
+		i = b;
+		System.out.println(i);
+		c = (char) b;
+		System.out.println( c + "  " + (int)c);
+		
+		b = 2;
+		b = (byte) (b + b);
+		
+		System.out.printf(" %.2f%n", d);
+
+		
+		Random r = new Random();
+		int from = 10, to = 200;
+		
+		int[] arr = new int[10];
+		int count = 0;
+		do {
+			i = r.nextInt(to - from + 1) + to;
+			System.out.print(i + ", " + ((++count%10==0)?"\n":""));
+		} while (i != from);
+		System.out.println();
+		
+		i = r.nextInt(350 - 10 + 1) + 10;
+		System.out.println(i);
+		System.out.printf("dupa %.2f%n", d);
+		
+		
+	}
+
+}

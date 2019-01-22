@@ -1,0 +1,21 @@
+
+public class MethodTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		System.out.println("-------------------------");
+		printHelloWorld(4);
+		System.out.println("|Hai                    |");
+		System.out.println("|How are you            |");
+		System.out.println("-------------------------");
+		
+	}
+
+	public static void printHelloWorld(int rep ) {
+		for (int i = 0; i < rep; i++) {
+			System.out.println("|Hello World            |");
+		}
+	}
+}

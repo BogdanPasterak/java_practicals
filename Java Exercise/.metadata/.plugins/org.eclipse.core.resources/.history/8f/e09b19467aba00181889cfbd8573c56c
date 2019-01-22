@@ -1,0 +1,12 @@
+import java.util.Calendar;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.printf("-> %28.25f <-%n%h%n", Math.PI, 11);
+		Calendar c = Calendar.getInstance();
+		System.out.printf("%te %tB %tY%n", c, c, c);
+	}
+
+}

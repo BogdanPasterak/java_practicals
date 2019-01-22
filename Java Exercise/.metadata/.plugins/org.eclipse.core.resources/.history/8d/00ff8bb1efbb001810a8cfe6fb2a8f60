@@ -1,0 +1,15 @@
+
+public class TestEscape {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String s = "Bogdan\n" + "Pasterak";
+		
+		System.out.println(s);
+		
+		char ch = 0b01100001;
+		System.out.println(ch);
+	}
+
+}

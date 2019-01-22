@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class MyScanner {
+	private static Scanner sc;
+	private static String taken;
+	public static final boolean NOT_EMPTY = true;
+	public static final boolean CAN_BE_EMPTY = false;
+	
+	private static void isScanner() {
+		if (sc == null) {
+			sc = new Scanner(System.in);
+		}
+	}
+	
+	public static String getString() {
+		
+		isScanner();
+		
+		System.out.print("Type line : ");
+		taken = sc.nextLine();
+		
+		return taken;
+	}
+
+	public static String getString(String info) {
+		
+		isScanner();
+		
+		if ( info.length() == 0 )
+			info = "Type line : ";
+		else if ( info.endsWith(":") )
+			info += " ";
+		else if ( ! info.endsWith(": ") )
+			info += " : ";
+		System.out.print(info);
+		taken = sc.nextLine();
+		
+		return taken;
+	}
+	
+	public static String getString( String info, boolean notEmpty) {
+		
+		getString(info);
+
+		while( notEmpty && taken.length() == 0 ){
+			System.out.println("Try again, String can't be empty");
+			getString(info);
+		}
+		
+		return taken;
+	}
+
+}

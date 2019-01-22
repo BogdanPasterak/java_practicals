@@ -1,0 +1,19 @@
+
+public class ArrayTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] arrI = {2,3,4};
+		float[] arrF = {6,7,8,9.9f};
+		
+		
+		
+		System.out.println(arrF.length);
+		for (float f : arrF) {
+			System.out.print(f + ", ");
+		}
+		System.out.println();
+	}
+
+}

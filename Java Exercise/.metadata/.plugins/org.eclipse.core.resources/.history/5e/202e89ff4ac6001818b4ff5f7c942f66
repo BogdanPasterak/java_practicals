@@ -1,0 +1,16 @@
+import myScanner.MyScanner2;
+
+public class GradesStatistic {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] grades;
+		int n;
+		
+		n = MyScanner2.getInt("Enter the number of students: ", 100);
+		System.out.println(n);
+		
+	}
+
+}

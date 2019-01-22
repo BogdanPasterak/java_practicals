@@ -1,0 +1,62 @@
+
+public class MyMath {
+
+	public static final double PI = 3.141592653589793;
+
+	public static void main(String[] args) {
+		// Use for test
+		System.out.println(toDegrees(1.5707963268));
+		System.out.println(toRadians(180));
+		System.out.println(absoluteValue(-41));
+		System.out.println(minimum(2, 1.2));
+		System.out.println(maximum(2, 1.2));
+		System.out.println(power(2.0, 0));
+		System.out.println(power(2.0, 1));
+		System.out.println(power(2.0, 2));
+		System.out.println(power(2.0, 3));
+		System.out.println(power(2.0, -2));
+
+	}
+
+	public static double toDegrees(double radians) {
+		// change radians to degrees
+		return radians * 180 / PI;
+	}
+
+	public static double toRadians(double degrees) {
+		// change degrees to radians
+		return degrees * PI / 180;
+	}
+
+	public static double absoluteValue(double number) {
+		// return absolute value
+		return (number >= 0) ? number : -number;
+	}
+
+	public static double minimum(double num1, double num2) {
+		// return smaller
+		return (num1 < num2) ? num1 : num2;
+	}
+
+	public static double maximum(double num1, double num2) {
+		// return bigger
+		return (num1 > num2) ? num1 : num2;
+	}
+
+	public static double power(double base, int exponent) {
+		// return power of base to exponent
+		double power = 1;
+		
+		if ( exponent >= 0)
+		while ( exponent-- > 0)
+			power *= base;
+		else {
+			exponent = (int) absoluteValue(exponent);
+			while ( exponent-- > 0)
+				power *= base;
+			power = 1 / power;
+		}
+		return power;
+	}
+
+}

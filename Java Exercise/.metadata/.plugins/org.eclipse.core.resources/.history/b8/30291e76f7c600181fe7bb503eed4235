@@ -1,0 +1,17 @@
+
+public class Q_02 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[][] board = { { 20, 15, 6, 19, 18 }, { 4, 46, 24, 17, 18 }, { 12, 50, 23, 16, 31 } };
+		
+		printMatrix(board);
+		System.out.println();
+		sumRows(board);
+		System.out.println();
+		largestInRows(board);
+		
+	}
+
+}

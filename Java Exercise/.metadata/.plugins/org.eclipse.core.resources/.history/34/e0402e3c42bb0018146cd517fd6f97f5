@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class MyScanner {
+	private static Scanner sc;
+	
+	private static void isScanner() {
+		if (sc == null) {
+			sc = new Scanner(System.in);
+		}
+	}
+	
+	public static String getString() {
+		String s;
+		
+		isScanner();
+		s = sc.next();
+		
+		return s;
+	}
+
+}

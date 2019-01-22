@@ -1,0 +1,14 @@
+package myScanner;
+
+public class Q_04 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s;
+		
+		s = MyScanner2.getString("Enter some text", MyScanner2.STRINGS.NAME);
+		System.out.println("You text ---" + s + "---");
+
+	}
+
+}

@@ -1,0 +1,21 @@
+package myScanner;
+
+import java.util.Arrays;
+
+public class Q_03 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String name, firstName, surname;
+		String[] parts;
+		
+		name = MyScanner2.getString("Enter your name", MyScanner2.STRINGS.NAME);
+		System.out.println("Your name ->" + name + "<-");
+		
+		parts = name.split(" ");
+		System.out.println("Your name contained " + Arrays.toString(parts) + " vowels.");
+		
+
+	}
+
+}

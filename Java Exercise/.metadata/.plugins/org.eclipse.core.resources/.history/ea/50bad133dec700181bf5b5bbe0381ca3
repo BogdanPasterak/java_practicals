@@ -1,0 +1,24 @@
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class MyForm extends JFrame {
+	
+	JLabel myLabel;
+	JButton myButton;
+	
+	public MyForm() {
+		myLabel = new JLabel("Bogdan");
+		this.add(myLabel);
+		myButton = new JButton("Click !");
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyForm f = new MyForm();
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+		f.pack();
+	}
+
+}

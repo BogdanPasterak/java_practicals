@@ -1,0 +1,168 @@
+import java.util.Scanner;
+
+public class MyScanner {
+	public static final boolean NOT_EMPTY = true;
+	public static final boolean CAN_BE_EMPTY = false;
+	public static final boolean CAN_NOT_BE_ZERO = false;
+	public static final boolean CAN_BE_ZERO = true;
+
+	private static Scanner sc;
+	private static String takenS;
+	private static int takenI;
+	private static double takenD;
+
+	// if scanner object does not exist yet
+	private static void isScanner() {
+		if (sc == null) {
+			sc = new Scanner(System.in);
+		}
+	}
+
+	// input line
+	public static String getString() {
+
+		return getString("Type line : ", CAN_BE_EMPTY);
+	}
+
+	public static String getString(boolean notEmpty) {
+
+		return getString("Type line : ", notEmpty);
+	}
+
+	// input with info
+	public static String getString(String info) {
+
+		isScanner();
+
+		if (info.length() == 0)
+			info = "Type line : ";
+		else if (info.endsWith(":"))
+			info += " ";
+		else if (!info.endsWith(": "))
+			info += " : ";
+		System.out.print(info);
+		takenS = sc.nextLine();
+
+		return takenS;
+	}
+
+	public static String getString(String info, boolean notEmpty) {
+
+		getString(info);
+
+		while (notEmpty && takenS.length() == 0) {
+			System.out.println("Try again, String can't be empty");
+			getString(info);
+		}
+
+		return takenS;
+	}
+
+	// input int (if enter set 0)
+	public static int getInt() {
+
+		return getInt("Type \"int\" : ", CAN_BE_ZERO);
+	}
+	
+	public static int getInt(boolean canBeZero) {
+
+		return getInt("Type \"int\" : ", canBeZero);
+	}
+	
+	public static int getInt(String info) {
+		
+		return getInt(info, CAN_BE_ZERO);
+	}
+
+	public static int getInt(String info, boolean canBeZero) {
+		boolean ok = true;
+
+		isScanner();
+
+		if (info.length() == 0)
+			info = "Type \"int\" : ";
+		else if (info.endsWith(":"))
+			info += " ";
+		else if (!info.endsWith(": "))
+			info += " : ";
+
+		// until the format is OK
+		do {
+			// do not write the first time
+			if ( ! ok )
+				System.out.println("Try again, it was not \"int\" type");
+
+			System.out.print(info);
+			takenS = sc.nextLine();
+			try {
+				takenI = Integer.parseInt(takenS);
+				ok = true;
+			} catch (Exception e) {
+				if (canBeZero && takenS.equals("")) {
+					takenI = 0;
+					ok = true;
+				} else
+					ok = false;
+			}
+		} while (!ok);
+
+		return takenI;
+	}
+
+	// range to int
+	public static int getInt(int from, int to) {
+		String info = "Type \"int\" from " + from + " to " + to + " : ";
+		
+		return getInt(info, from, to, CAN_BE_ZERO);
+	}
+
+	public static int getInt(int from, int to, boolean canBeZero) {
+		String info = "Type \"int\" from " + from + " to " + to + " : ";
+		
+		return getInt(info, from, to, canBeZero);
+	}
+
+	public static int getInt(String info, int from, int to, boolean canBeZero) {
+		boolean repeat = false;
+
+		do {
+			if (repeat)
+				System.out.println("Out of range, try again");
+			repeat = true;
+			getInt(info, canBeZero);
+		} while (takenI < from || takenI > to);
+
+		return takenI;
+	}
+	
+	public static int getInt(int to) {
+		
+		return getInt( 0, to, CAN_BE_ZERO);
+	}
+	
+	public static int getInt(int to, boolean canBeZer) {
+		
+		return getInt( 0, to, canBeZer);
+	}
+	
+	public static int getInt(String info, int to) {
+		
+		return getInt( info, 0, to, CAN_BE_ZERO);
+	}
+	
+	public static int getInt(String info, int to, boolean canBeZero) {
+		
+		return getInt( info, 0, to, canBeZero);
+	}
+	
+	public static int getInt(String info, int from, int to) {
+		
+		return getInt( info, from, to, CAN_BE_ZERO);
+	}
+	
+	// input double
+	public static double getDouble(String info, double from, double to, boolean canBeZero) {
+		
+		return takenD;
+	}
+}

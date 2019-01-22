@@ -1,0 +1,30 @@
+
+public class DifferenceMaxMin {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] array = {10,65,85,5,54,95,11,12,15,22};
+
+		System.out.println("difference between the largest and smallest values = \n" + 
+					diffMaxMin(array));
+	}
+
+	public static int diffMaxMin(int[] array) {
+		// TODO Auto-generated method stub
+		int max, min;
+		
+		if (array.length == 0)
+			return -1;
+		
+		max = min = array[0];
+		for (int num : array)
+			if ( num > max )
+				max = num;
+			else if ( num < min )
+				min = num;
+		
+		return max - min;
+	}
+
+}

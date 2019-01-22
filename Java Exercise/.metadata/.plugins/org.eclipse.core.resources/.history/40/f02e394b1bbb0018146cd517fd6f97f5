@@ -1,0 +1,18 @@
+import java.math.BigInteger;
+
+public class TestByte {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		byte bVar = 127;
+		bVar++;
+		long l = 123_456_789_000l;
+		BigInteger bg = BigInteger.valueOf(l);
+		
+		System.out.printf("%h", bg);
+		
+
+	}
+
+}

@@ -1,0 +1,25 @@
+
+public class Practicals_3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("BBBB   PPPP ");
+		System.out.println("B   B  P   P");
+		System.out.println("B   B  P   P");
+		System.out.println("BBBB   PPPP ");
+		System.out.println("B   B  P    ");
+		System.out.println("B   B  P    ");
+		System.out.println("BBBB   P    ");
+
+		System.out.println("\nBogdan Pasterak\n");
+		String s[] = {	"BBBB   PPPP ",
+						"B   B  P   P",
+						"B   B  P    ",
+						"BBBB   P    "};
+		int a[] = {0, 1, 1, 0, 2, 2, 3};
+		for (int i : a) {
+			System.out.println(s[i]);
+		}
+	}
+
+}

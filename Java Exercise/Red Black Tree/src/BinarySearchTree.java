@@ -1,0 +1,358 @@
+
+/**
+ * This is a "generic" Binary Search Tree - know the definition of what a BST
+ * is!
+ * 
+ * NOTE: To allow for our objects to be inserted (and found) properly they have
+ * to be COMPARED to the objects in the tree. This is why we have <T extends
+ * Comparable<T>> instead of just <T> : We are effectively saying that the
+ * objects which can be stored MUST implement the Comparable interface.
+ * 
+ * NOTE: Our Node class is an inner class in an inner class at the bottom of the
+ * code.
+ * 
+ * @author dermot.hegarty
+ *
+ * @param <T>
+ */
+public class BinarySearchTree<T extends Comparable<T>> {
+	public static final boolean RED = false;
+	public static final boolean BLACK = true;
+	/**
+	 * Reference to the root of the tree
+	 */
+	public Node root;
+
+	/**
+	 * This is the public insert method, i.e. the one that the outside world will
+	 * invoke. It then kicks off a recursive method to "walk" through down through
+	 * the tree - this is possible because each sub-tree is itself a tree.
+	 * 
+	 * @param value
+	 *            Object to insert into the tree
+	 */
+	Node pivot;
+
+	public Node findMinimum() {
+		return recFindMinimum(root);
+	}
+
+	private Node recFindMinimum(Node subTreeRoot) {
+		pivot = subTreeRoot;
+		if (pivot.left == null)
+			return pivot;
+		else
+			return recFindMinimum(pivot.left);
+
+	}
+
+	public Node find(T searchVal) {
+		// start at the root and recurse
+		return recFind(root, searchVal);
+	}
+
+	private Node recFind(Node subTreeRoot, T searchVal) {
+		// pivot = current root
+		pivot = subTreeRoot;
+		// if searched value is the same as pivot value
+		if (pivot.value == searchVal)
+			// return this value = TRUE
+			return pivot;
+		// if pivot value is less go RIGHT if not NULL
+		else if ((int) pivot.value < (int) searchVal && pivot.right != null) { // call the method recursively
+			return recFind(pivot.right, searchVal);
+		} // if pivot value is bigger go LEFT if not NULL
+		else if ((int) pivot.value > (int) searchVal && pivot.left != null) {// call the method recursively
+			return recFind(pivot.left, searchVal);
+		} else// in other case value does not exists
+			return null;
+	}
+
+	public Node findMax() {
+		pivot = root;
+		// if right side not empty
+		while (pivot.right != null) {
+			// max = pivot on the far right side
+			pivot = pivot.right;
+		}
+		return pivot;
+	}
+
+	public void rotateLeft() {
+		pivot = root.right;
+		root.right = pivot.left;
+		pivot.left = root;
+		root = pivot;
+		System.out.println("Piv: " + pivot + " Root" + root);
+		// root.right = pivot.left;
+		// pivot.left = root;
+	}
+
+	public void insert(T value) {
+		Node node = new Node(value); // Create the Node to add
+
+		// Special case that cannot be handled recursively
+		if (root == null) {
+			root = node;
+			root.color = BLACK;
+			return;
+		}
+
+		// Initially we start at the root. Each subsequent recursive call will be to a
+		// left or right subtree.
+		insertRec(root, node, null);
+
+	}
+
+	/**
+	 * 
+	 * @param subTreeRoot
+	 *            The SubTree to insert into
+	 * @param node
+	 *            The Node that we wish to insert
+	 */
+	private void insertRec(Node subTreeRoot, Node node, Node parent) {
+
+		// Note the call to the compareTo() method. This is only possible if our objects
+		// implement
+		// the Comparable interface.
+		if (node.value.compareTo(subTreeRoot.value) < 0) {
+
+			// This is our terminal case for recursion. We should be going left but there is
+			// no leaf node there so that is obviously where we must insert
+			if (subTreeRoot.left == null) {
+				if (subTreeRoot.color == RED)
+					node.color = BLACK;
+				subTreeRoot.left = node;
+				return; // return here is unnecessary
+			} else { // Note that this allows duplicates!
+
+				// Now our new "root" is the left subTree
+				insertRec(subTreeRoot.left, node, subTreeRoot);
+			}
+		}
+		// Same logic for the right subtree
+		else {
+			if (subTreeRoot.right == null) {
+				if (subTreeRoot.color == RED)
+					node.color = BLACK;
+				subTreeRoot.right = node;
+				return;
+			} else {
+				insertRec(subTreeRoot.right, node, subTreeRoot);
+			}
+		}
+	}
+
+	/**
+	 * Should traverse the tree "in-order." See the notes
+	 */
+	public void inOrderTraversal() {
+		// start at the root and recurse
+		recInOrderTraversal(root);
+	}
+
+	public void preOrderTraversal() {
+		// start at the root and recurse
+		recPreOrderTraversal(root);
+	}
+
+	public void postOrderTraversal() {
+		// start at the root and recurse
+		recPostOrderTraversal(root);
+	}
+
+	/**
+	 * This allows us to recursively process the tree "in-order". Note that it is
+	 * private
+	 * 
+	 * @param subTreeRoot
+	 */
+	private void recInOrderTraversal(Node subTreeRoot) {
+		if (subTreeRoot == null)
+			return;
+
+		recInOrderTraversal(subTreeRoot.left);
+		processNode(subTreeRoot);
+		recInOrderTraversal(subTreeRoot.right);
+	}
+
+	private void recPreOrderTraversal(Node subTreeRoot) {
+		if (subTreeRoot == null)
+			return;
+
+		processNode(subTreeRoot);
+		recPreOrderTraversal(subTreeRoot.left);
+		recPreOrderTraversal(subTreeRoot.right);
+	}
+
+	private void recPostOrderTraversal(Node subTreeRoot) {
+		if (subTreeRoot == null)
+			return;
+
+		recPostOrderTraversal(subTreeRoot.left);
+		recPostOrderTraversal(subTreeRoot.right);
+		processNode(subTreeRoot);
+	}
+
+	/**
+	 * Do some "work" on the node - here we just print it out
+	 * 
+	 * @param currNode
+	 */
+	private void processNode(Node currNode) {
+		System.out.println(currNode.toString());
+	}
+
+	/**
+	 * 
+	 * @return The number of nodes in the tree
+	 */
+	public int countNodes() {
+		return recCountNodes(root);
+	}
+
+	/**
+	 * Note: This is a practical example of a simple usage of pre-order traversal
+	 * 
+	 * @param subTreeRoot
+	 * @return
+	 */
+	private int recCountNodes(Node subTreeRoot) {
+		if (subTreeRoot == null)
+			return 0;
+
+		// Look at the pre-order. "Count this node and THEN count the left and right
+		// subtrees recursively
+		return 1 + recCountNodes(subTreeRoot.left) + recCountNodes(subTreeRoot.right);
+	}
+
+	public void drawTree() {
+		final String[] boxChar = { "/---\\", "|", "\\---/", "/red\\" };
+		String[] lines = { "", "", "", "" };
+		String sLine;
+		Object[][] nodesTree = new Object[5][];
+		int offset = 37;
+		Node parent, current;
+		String nod;
+		boolean draw = true;
+
+		for (int level = 0; level < 5; level++) {
+			if (level == 0) {
+				if (root == null)
+					break;
+				nodesTree[0] = new Object[1];
+				nodesTree[0][0] = root;
+				nod = getValue3Char(root);
+				if (root.color == RED)
+					lines[0] = "                                     /red\\";
+				else
+					lines[0] = "                                     /---\\";
+				lines[1] = "                                     |" + nod + "|";
+				lines[2] = "                                     \\---/";
+				lines[3] = "                   ,------------------' '------------------,";
+
+			} else {
+				draw = false;
+				final int quantity = (int) Math.pow(2, level); // 1-> 2, 2 -> 4, 3 -> 8, 4 -> 16
+				nodesTree[level] = new Object[quantity];
+				final int space = 80 / quantity - 5; // 1-> 35, 2 -> 15, 3 -> 5, 4 -> 0
+				offset = space / 2; // // 0 -> 37, 1-> 17, 2 -> 7, 3 -> 2, 4 -> 0
+				sLine = "";
+				for (int i = 0; i < offset; i++)
+					sLine += " ";
+				for (int i = 0; i < 3; i++)
+					lines[i] = sLine;
+				sLine = "";
+				for (int i = 0; i < space; i++)
+					sLine += " ";
+
+				lines[3] = "";
+				for (int i = 0; i < offset / 2 + 1; i++)
+					lines[3] += " ";
+				for (int n = 0; n < quantity; n++) { // for each level -> 2 more possible nods
+					parent = (Node) nodesTree[level - 1][n / 2];
+					current = (parent != null) ? // if the parent is not null
+							((n % 2 == 0) ? parent.left : // first left
+									parent.right)
+							: // secound right
+							null; // otherwise null
+					// store for next level
+					nodesTree[level][n] = current;
+					if (current != null) {
+						draw = true;
+						// build graphic
+
+						for (int i = 0; i < 3; i++)
+							if (i == 0 && current != null && current.color == RED)
+								lines[0] += boxChar[3];
+							else
+								lines[i] += boxChar[i];
+						lines[1] += getValue3Char(current) + boxChar[1];
+						if (n < quantity - 1)
+							for (int i = 0; i < 3; i++)
+								lines[i] += sLine;
+						// line 3 -> branches
+						lines[3] += ",";
+						for (int i = 0; i < space / 4 - ((level == 3) ? 1 : 0); i++)
+							lines[3] += "-";
+						lines[3] += "' '";
+						for (int i = 0; i < space / 4; i++)
+							lines[3] += "-";
+						lines[3] += ",";
+						if (n < quantity - 1)
+							for (int i = 0; i < (space + 2) / 2 + 1; i++)
+								lines[3] += " ";
+						if (level == 4)
+							lines[3] = "";
+					} else if (n < quantity - 1) {
+						for (int i = 0; i < 4; i++)
+							lines[i] += sLine + "     ";
+
+					}
+				}
+			}
+			if (draw)
+				for (String s : lines)
+					System.out.println(s);
+		}
+
+	}
+
+	private String getValue3Char(Node node) {
+		if (node == null)
+			return "   ";
+		else if (node.value instanceof String)
+			return ((String) node.value).substring(0, 3);
+		else if (node.value instanceof Integer)
+			return String.format("%03d", node.value);
+
+		return "   ";
+	}
+
+	/////////////////////////////////////////////////////////////////
+	/**
+	 * Our Node contains a value and a reference to the left and right subtrees
+	 * (initially null)
+	 * 
+	 * @author dermot.hegarty
+	 *
+	 */
+	private class Node {
+		public T value; // value is the actual object that we are storing
+		public Node left;
+		public Node right;
+		public boolean color;
+
+		public Node(T value) {
+			this.value = value;
+			color = RED;
+		}
+
+		@Override
+		public String toString() {
+			return "Node [value=" + value + "]";
+		}
+
+	}
+}

@@ -1,0 +1,30 @@
+package myScanner;
+
+public class Q_06 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String date;
+		String[] parts;
+		
+		date = MyScanner2.getString("Enter a Date (DD/MM/YYYY) : ", "03/10/2018");
+		System.out.println("You entred ---" + date + "---");
+		
+		if (date.length() == 10 && date.charAt(2) == '/' && date.charAt(5) == '/') {
+			parts = date.split("/");
+			try {
+				int i = Integer.parseInt(parts[0]);
+				i = Integer.parseInt(parts[1]);
+				i = Integer.parseInt(parts[2]);
+				for (String string : parts) {
+					System.out.println(string + ": Value Goes Here");
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+
+	}
+
+}

@@ -1,0 +1,20 @@
+
+public class Course {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// variable
+		String courseName = "Software Development";
+		String[] studentName = {"Student 1", "Student 2", "Student 3", "Student 4", "Student 5", "Student 6", "Student 7"};
+		String[] staffName = {"Paul","Angela","Denis"};
+		
+		System.out.println("Course   Name: " + courseName);
+		System.out.println("Staff    Name: " + staffName[1]);
+		System.out.println("Student in the class :");
+		for (String student : studentName) {
+			System.out.println("\t" + student);
+		}
+		
+	}
+
+}

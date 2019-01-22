@@ -1,0 +1,21 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class MyForm extends JFrame {
+	
+	JLabel myLabel;
+	
+	public MyForm() {
+		myLabel = new JLabel("Bogdan");
+		this.getContentPane().add(myLabel, null);
+				
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyForm f = new MyForm();
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+	}
+
+}

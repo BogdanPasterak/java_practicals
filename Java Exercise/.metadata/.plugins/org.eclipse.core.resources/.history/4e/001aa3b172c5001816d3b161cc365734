@@ -1,0 +1,29 @@
+
+public class MyMath {
+
+	public static final double PI = 3.141592653589793;
+	
+	public static void main(String[] args) {
+		// Use for test
+		System.out.println(toDegrees(1.5707963268));
+		System.out.println(toRadians(180));
+		System.out.println(absoluteValue(-41));
+
+	}
+	
+	public static double toDegrees(double radians) {
+		// change radians to degrees
+		return radians * 180 / PI;
+	}
+
+	public static double toRadians(double degrees) {
+		// change degrees to radians 
+		return degrees * PI / 180;
+	}
+
+	public static double absoluteValue(double number) {
+		// change degrees to radians 
+		return ( number >= 0 ) ? number : -number;
+	}
+
+}

@@ -28,6 +28,7 @@ public class newDate {
 
 	// Checking if the year is leap
 	public boolean leapYear (int year) {
+		
 		// initial assumption that no
 		boolean leap = false;
 		
@@ -110,6 +111,7 @@ public class newDate {
 	}
 	
 	public int ageDate (int dayBirth, int monthBirth, int yearBirth) {
+		
 		// protect against bad date
 		if ( validDate(dayBirth, monthBirth, yearBirth) ) {
 			int years = 0;
@@ -145,9 +147,7 @@ public class newDate {
 	
 	// method that returns the number of days in a month
 	private int daysInMonth(int month, int year ) {
-		
-		boolean leap = leapYear(year);
-		
+			
 		switch (month) {
 		// mounths with 31 days
 		case 1: case 3: case 5:case 7: case 8: case 10: case 12:
@@ -157,10 +157,11 @@ public class newDate {
 			return 30;
 		// February depending on leap year
 		case 2:
-			if (leap)
+			if (leapYear(year))
 				return 29;
 			else
 				return 28;
+		// any wrong month
 		default:
 			return 0;
 		}

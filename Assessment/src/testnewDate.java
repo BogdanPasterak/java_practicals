@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 /**
  * 
- * @author Bogdan Pasterak
- * Assessment Object Oriented Programing JAVA
- * Level 3 (7540-037/7630-321)
- * 28 Jan 2019
+ * @author Bogdan Pasterak Assessment Object Oriented Programing JAVA Level 3
+ *         (7540-037/7630-321) 28 Jan 2019
  *
  */
-// class testnewDate according to the convention, it should be called TestNewDate
+// class testnewDate according to the convention, it should be called
+// TestNewDate
 public class testnewDate {
 	static Scanner sc;
 	static newDate nDate;
@@ -19,7 +18,7 @@ public class testnewDate {
 		sc = new Scanner(System.in);
 		nDate = new newDate();
 		String choise;
-		
+
 		// main loop
 		do {
 			// print menu
@@ -31,13 +30,12 @@ public class testnewDate {
 			System.out.println("  4.  Age");
 			System.out.println("  5.  Quit");
 			System.out.println("-----------------------");
-			
+
 			// user selection
 			System.out.print("Choose options : ");
 			choise = sc.nextLine();
 			System.out.println();
-			
-			
+
 			switch (choise) {
 			case "1":
 				testLeapYear();
@@ -56,8 +54,8 @@ public class testnewDate {
 			default:
 				System.out.println("Incorrect option, try again");
 			}
-			
-		} while ( ! choise.equals("5") );
+
+		} while (!choise.equals("5"));
 		System.out.println("Completion of the program !");
 
 	}
@@ -65,7 +63,7 @@ public class testnewDate {
 	// Testing leapYear method
 	private static void testLeapYear() {
 		int year = 0;
-		
+
 		// user type year
 		do {
 			System.out.print("Enter a year (yyyy) : ");
@@ -82,60 +80,79 @@ public class testnewDate {
 				System.out.println(e.getMessage());
 				System.out.println("Try again. The year must be a number");
 			}
-		} while (year == 0 );
-		
+		} while (year == 0);
+
 		System.out.print("\nYear " + year + " is ");
-		if ( nDate.leapYear(year) )
+		if (nDate.leapYear(year))
 			System.out.println("LEAP YEAR");
 		else
 			System.out.println("NOT A LEAP YEAR");
 	}
 
 	private static void testJulianDate() {
+		int[] date;
+		boolean valid;
 
-		// user type date
-		int[] date = getDate();
-		// asaign value
-		int day = date[0];
-		int month = date[1];
-		int year = date[2];
-		
-		// for valid date print Julian date, else message
-		if (nDate.validDate(day, month, year))
-			System.out.println("\nJulian date is : " + nDate.julianDate(day, month, year));
-		else 
-			System.out.println("\nINVALID DATE");
+		do {
+			// user type date
+			date = getDate();
+			// asaign value
+			int day = date[0];
+			int month = date[1];
+			int year = date[2];
+
+			// for valid date print Julian date, else message
+			valid = nDate.validDate(day, month, year);
+			if (valid)
+				System.out.println("\nJulian date is : " + nDate.julianDate(day, month, year));
+			else
+				System.out.println("\nINVALID DATE");
+		} while (!valid);
 	}
-	
+
 	private static void testDaysElapsed() {
+		int[] start, end;
+		boolean valid = true;
+
+		// get two dates and valid
+		do {
+			if (!valid)
+				System.out.println("INVALID DATE");
+			else
+				System.out.println("START DATE");
+			start = getDate();
+			valid = nDate.validDate(start[0], start[1], start[2]);
+		} while (!valid);
 		
-		// get two dates
-		System.out.println("START DATE");
-		int [] start = getDate();
-		System.out.println("END DATE");
-		int [] end = getDate();
-		
+		// valid is TRUE
+		do {
+			if (!valid)
+				System.out.println("INVALID DATE");
+			else
+				System.out.println("END DATE");
+			end = getDate();
+			valid = nDate.validDate(end[0], end[1], end[2]);
+		} while (!valid);
+
 		// if dates are valid print number of days between
-		if ( nDate.validDate(start[0], start[1], start[2]) &&
-				nDate.validDate(end[0], end[1], end[2]))
-			System.out.println("\nDays elapsed : " + 
-				nDate.daysElapsed(start[0], start[1], start[2], end[0], end[1], end[2]));
-		else
-			System.out.println("\nINVALID DATE");
+		System.out.println("\nDays elapsed : " + nDate.daysElapsed(start[0], start[1], start[2],
+																	end[0], end[1], end[2]));
 	}
 
 	private static void testAge() {
-		
-		// get birth date
-		System.out.println("Enter the date of birth");
-		int [] birth = getDate();
-		
-		if ( nDate.validDate(birth[0], birth[1], birth[2]))
-			System.out.println("\nYour age is " + 
-				nDate.ageDate(birth[0], birth[1], birth[2]));
-		else
-			System.out.println("\nINVALID DATE");
-		
+		int[] birth;
+		boolean valid;
+
+		do {
+			// get birth date
+			System.out.println("Enter the date of birth");
+			birth = getDate();
+			valid = nDate.validDate(birth[0], birth[1], birth[2]);
+			if (valid)
+				System.out.println("\nYour age is " + nDate.ageDate(birth[0], birth[1], birth[2]));
+			else
+				System.out.println("\nINVALID DATE");
+		} while (!valid);
 	}
 
 	// get date from user helper metchod
@@ -149,7 +166,7 @@ public class testnewDate {
 			System.out.print("Enter a date (dd-mm-yyyy) : ");
 			// get String and remove all spaces
 			date = sc.nextLine().replaceAll(" ", "");
-			if (date.length() == 10 &&date.charAt(2) == '-' && date.charAt(2) == '-' ) {
+			if (date.length() == 10 && date.charAt(2) == '-' && date.charAt(2) == '-') {
 				// try / catch for invalid Integer
 				try {
 					day = Integer.parseInt(date.substring(0, 2));
@@ -164,10 +181,10 @@ public class testnewDate {
 			} else {
 				System.out.println("Invalid format. Try again.");
 			}
-		} while ( ! ok );
+		} while (!ok);
 
 		// return array
-		return new int[] {day, month, year};
+		return new int[] { day, month, year };
 	}
 
 }

@@ -9,8 +9,8 @@ import java.util.Scanner;
 // class testnewDate according to the convention, it should be called
 // TestNewDate
 public class testnewDate {
-	static Scanner sc;
-	static newDate nDate;
+	private static Scanner sc;
+	private static newDate nDate;
 
 	public static void main(String[] args) {
 
@@ -106,7 +106,7 @@ public class testnewDate {
 			if (valid)
 				System.out.println("\nJulian date is : " + nDate.julianDate(day, month, year));
 			else
-				System.out.println("\nINVALID DATE");
+				System.out.println("INVALID DATE");
 		} while (!valid);
 	}
 
@@ -151,7 +151,7 @@ public class testnewDate {
 			if (valid)
 				System.out.println("\nYour age is " + nDate.ageDate(birth[0], birth[1], birth[2]));
 			else
-				System.out.println("\nINVALID DATE");
+				System.out.println("INVALID DATE");
 		} while (!valid);
 	}
 

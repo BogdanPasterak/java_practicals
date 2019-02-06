@@ -1,31 +1,54 @@
 package differentCoat;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CalculateMenu {
+	private static final String HEADER = "List of clients Different Coat";
+	private static Scanner scanner = new Scanner(System.in); 
 	
 	public static void newCustomer() {
 		
 	}
 
-	public static void searchCustomer() {
+	public static void searchCustomer(ArrayList<Customer> customerList) {
+		boolean find = false;
+		int idToDisplay = -1;
+		do {
+			try {
+				System.out.print("Enter ID customer : ");
+				idToDisplay = Integer.parseInt(scanner.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println(e.getMessage());
+				System.out.println("Enter corect ID number");
+			}
+		} while (idToDisplay == -1);
 		
+		for (int i = 0; i < customerList.size(); i++)
+			if (customerList.get(i).getId() == idToDisplay) {
+				System.out.println("\n" + customerList.get(i));
+				find = true;
+			}
+		if ( ! find )
+			System.out.println("There is no client with id " + idToDisplay);
 	}
 
 	public static void removeCustomer(ArrayList<Customer> customerList) {
 		boolean find = false;
-		// doczytac dana
-		// usynac przecinki z name i telefon
-		int idToRemove = 2;
+		int idToRemove = -1;
+		do {
+			try {
+				System.out.print("Enter ID customer : ");
+				idToRemove = Integer.parseInt(scanner.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println(e.getMessage());
+				System.out.println("Enter corect ID number");
+			}
+		} while (idToRemove == -1);
 		
 		for (int i = 0; i < customerList.size(); i++)
 			if (customerList.get(i).getId() == idToRemove) {
@@ -59,13 +82,14 @@ public class CalculateMenu {
 		*/
 		// change to text record
 		try (PrintWriter printWriter = new PrintWriter(PATH)) {
+			printWriter.println(HEADER);
 			for (Customer customer : customerList) {
 				printWriter.print(customer.getId());
-				printWriter.print(',');
+				printWriter.print('\t');
 				printWriter.print(customer.getName());
-				printWriter.print(',');
+				printWriter.print('\t');
 				printWriter.print(customer.getPhone());
-				printWriter.print(',');
+				printWriter.print('\t');
 				printWriter.println(customer.getPaintCans());
 			}
 			System.out.println("Data saved to a file : " + PATH);
@@ -102,17 +126,20 @@ public class CalculateMenu {
 		String customerLine;
 		String[] customerDetails;
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(PATH))) {
-			while ((customerLine = bufferedReader.readLine()) != null) {
-				customerDetails = customerLine.split(",");
-				if (customerDetails.length == 4) {
-					// id of customer is ignored
-					Integer.parseInt(customerDetails[0]);
-					int cans = Integer.parseInt(customerDetails[3]);
-					// adding new customer
-					customerList.add(new Customer(customerDetails[1], customerDetails[2], cans));
-				} else
-					throw new IncompatibleClassChangeError("Data doesn't match the customer type");
-			}
+			if (bufferedReader.readLine().equals(HEADER))
+				while ((customerLine = bufferedReader.readLine()) != null) {
+					customerDetails = customerLine.split("\t");
+					if (customerDetails.length == 4) {
+						// id of customer is ignored
+						Integer.parseInt(customerDetails[0]);
+						int cans = Integer.parseInt(customerDetails[3]);
+						// adding new customer
+						customerList.add(new Customer(customerDetails[1], customerDetails[2], cans));
+					} else
+						throw new IncompatibleClassChangeError("Data doesn't match the customer type");
+				}
+			else
+				throw new IOException("Data doesn't match the customers list");
 			System.out.println("List loaded");
 		} catch (IncompatibleClassChangeError | NumberFormatException e1 ) {
 			System.err.println(e1.getMessage());

@@ -35,9 +35,21 @@ public class CustomerGetterSetterTest {
 	}
 	
 	@Test
+	public void testSetNameWithTab() {
+		customer.setName("Bob\t\tD'\tClark");
+		assertEquals("Bob        D'    Clark", customer.getName());
+	}
+	
+	@Test
 	public void testSetPhone() {
 		customer.setPhone("00353-777-2222-3333");
 		assertEquals("00353-777-2222-3333", customer.getPhone());
+	}
+	
+	@Test
+	public void testSetPhoneWithTab() {
+		customer.setPhone("00353	777	2222	3333");
+		assertEquals("00353    777    2222    3333", customer.getPhone());
 	}
 	
 	@Test

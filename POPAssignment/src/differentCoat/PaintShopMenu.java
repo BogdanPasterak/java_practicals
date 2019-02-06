@@ -42,7 +42,7 @@ public class PaintShopMenu {
 				CalculateMenu.newCustomer();
 				break;
 			case "2":
-				CalculateMenu.searchCustomer();
+				CalculateMenu.searchCustomer(customerList);
 				break;
 			case "3":
 				CalculateMenu.removeCustomer(customerList);

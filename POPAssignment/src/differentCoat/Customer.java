@@ -8,7 +8,7 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// class variable
 	private static int idLastCustomer;
-	// constans id for each customer
+	// constant id for each customer
 	private final int id;
 	// members variable
 	private String name;
@@ -24,8 +24,8 @@ public class Customer implements Serializable {
 	// constructor to create new customer
 	public Customer(String name, String phone, int paintCans) {
 		this();
-		this.name = name;
-		this.phone = phone;
+		setName(name);
+		setPhone(phone);
 		this.paintCans = paintCans;
 	}
 
@@ -34,14 +34,16 @@ public class Customer implements Serializable {
 		return name;
 	}
 	public void setName(String name) {
-		this.name = name;
+		// replace the tab with four spaces, the tab is a separator when writing data
+		this.name = name.replaceAll("\t", "    ");
 	}
 
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
-		this.phone = phone;
+		// replace the tab with four spaces, the tab is a separator when writing data
+		this.phone = phone.replaceAll("\t", "    ");
 	}
 
 	public int getPaintCans() {

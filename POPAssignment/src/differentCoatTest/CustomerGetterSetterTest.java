@@ -44,7 +44,6 @@ public class CustomerGetterSetterTest {
 	public void testSetPaintCans() {
 		customer.setPaintCans(7);	
 		assertEquals(7, customer.getPaintCans());	
-	}
-	
+	}	
 
 }

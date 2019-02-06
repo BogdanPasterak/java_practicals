@@ -1,0 +1,4 @@
+1,Jon Doe,0877-333333,5
+2,Anna D'ark,0877-999999,3
+3,Bogdan Pasterak,0877-111111,9
+6,Samson Nobody,+353785-987654,6

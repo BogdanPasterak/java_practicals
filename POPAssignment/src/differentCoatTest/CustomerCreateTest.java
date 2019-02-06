@@ -17,14 +17,14 @@ public class CustomerCreateTest {
 		
 		customer1 = new Customer("Bogdan Pasterak", "087-1234-567", 5);
 		assertNotNull(customer1);
-		assertEquals(1, customer1.getID());
+		assertEquals(1, customer1.getId());
 		
 		// sets up only once, the first use starts the counter
 		assertFalse(Customer.setStartId(10));
 		
 		customer2 = new Customer("Jean Doe", "087-1111-555", 10);
 		assertNotNull(customer2);
-		assertEquals(2, customer2.getID());
+		assertEquals(2, customer2.getId());
 	}
 	
 	@Test
@@ -37,11 +37,11 @@ public class CustomerCreateTest {
 		
 		customer1 = new Customer("Bogdan Pasterak", "087-1234-567", 5);
 		assertNotNull(customer1);
-		assertEquals(10, customer1.getID());
+		assertEquals(10, customer1.getId());
 		
 		customer2 = new Customer("Jean Doe", "087-1111-555", 10);
 		assertNotNull(customer2);
-		assertEquals(11, customer2.getID());
+		assertEquals(11, customer2.getId());
 	}
 	
 

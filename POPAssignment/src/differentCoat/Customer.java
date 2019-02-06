@@ -9,7 +9,7 @@ public class Customer implements Serializable {
 	// class variable
 	private static int idLastCustomer;
 	// constans id for each customer
-	private final int ID;
+	private final int id;
 	// members variable
 	private String name;
 	private String phone;
@@ -18,7 +18,7 @@ public class Customer implements Serializable {
 	// constructor to initialize ID customera
 	private Customer() {
 		idLastCustomer++;
-		ID = idLastCustomer;
+		id = idLastCustomer;
 	}
 
 	// constructor to create new customer
@@ -50,13 +50,13 @@ public class Customer implements Serializable {
 	public void setPaintCans(int paintCans) {
 		this.paintCans = paintCans;
 	}
-
-	public int getID() {
-		return ID;
+	// id only getter
+	public int getId() {
+		return id;
 	}
 	
+	// method needed to read the list as an object
 	public static boolean setStartId(int start) {
-		
 		// greater than 0
 		if (start <= 0)
 			return false;
@@ -68,6 +68,16 @@ public class Customer implements Serializable {
 		idLastCustomer = start;
 		// success
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		String customer;
+		customer = "Customer ID - " + id + "\n";
+		customer += "  Name - " + name + "\n";
+		customer += "  Phone Nr - " + phone + "\n";
+		customer += "  Ordered paint cans - " + paintCans;
+		return customer;
 	}
 	
 

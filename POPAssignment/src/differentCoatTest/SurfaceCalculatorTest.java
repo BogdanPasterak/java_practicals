@@ -52,21 +52,21 @@ public class SurfaceCalculatorTest {
 
 	@Test
 	public void testCylindricaRoomH2D2() {
-		double surface = SurfaceCalculator.cylindricaRoom(2, 2);
+		double surface = SurfaceCalculator.cylindricalRoom(2, 2);
 		
 		assertEquals(4 * Math.PI, surface, 0.00001);
 	}
 
 	@Test
 	public void testCylindricaRoomH2_8D3() {
-		double surface = SurfaceCalculator.cylindricaRoom(2.8, 3);
+		double surface = SurfaceCalculator.cylindricalRoom(2.8, 3);
 		
 		assertEquals(8.4 * Math.PI, surface, 0.00001);
 	}
 
 	@Test
 	public void testCylindricaRoomH2_8D2_2() {
-		double surface = SurfaceCalculator.cylindricaRoom(2.8, 2.2);
+		double surface = SurfaceCalculator.cylindricalRoom(2.8, 2.2);
 		
 		assertEquals(6.16 * Math.PI, surface, 0.00001);
 	}

@@ -35,7 +35,7 @@ public class Customer implements Serializable {
 	}
 	public void setName(String name) {
 		// replace the tab with four spaces, the tab is a separator when writing data
-		this.name = name.replaceAll("\t", "    ");
+		this.name = name.trim().replaceAll("\t", "    ");
 	}
 
 	public String getPhone() {
@@ -43,7 +43,7 @@ public class Customer implements Serializable {
 	}
 	public void setPhone(String phone) {
 		// replace the tab with four spaces, the tab is a separator when writing data
-		this.phone = phone.replaceAll("\t", "    ");
+		this.phone = phone.trim().replaceAll("\t", "    ");
 	}
 
 	public int getPaintCans() {
@@ -70,6 +70,40 @@ public class Customer implements Serializable {
 		idLastCustomer = start;
 		// success
 		return true;
+	}
+	
+	// method to convert customer to 1 line of string (tab is a separator
+	public String toSave() {
+		
+		return id + "\t" + name + "\t" + phone + "\t" + paintCans;
+	}
+	
+	// method return new customer from String (loaded) if correct
+	public static Customer getNewCustomer(String customer) throws IncorrectObjectTypeExeption {
+		
+		// seperate data
+		String[] customerDetails = customer.trim().split("\t");
+		
+		// if number data match 
+		if (customerDetails.length == 4) {
+			try {
+				// id and paintCans are int type
+				int nrId = Integer.parseInt(customerDetails[0]);
+				int cans = Integer.parseInt(customerDetails[3]);
+				// if a gap in id numbers leave a gap
+				if (idLastCustomer + 1 < nrId )
+					idLastCustomer = nrId - 1;
+				else if (idLastCustomer >= nrId)
+					throw new IncorrectObjectTypeExeption("Wrong order of customers on the list");
+				
+				// return new customer
+				return new Customer(customerDetails[1], customerDetails[2], cans);
+			} catch (NumberFormatException e) {
+				throw new IncorrectObjectTypeExeption("Data type not compatible with Customer data");
+			}
+		} else
+			throw new IncorrectObjectTypeExeption("Data number doesn't match the Customer type");
+		//return null;
 	}
 	
 	@Override

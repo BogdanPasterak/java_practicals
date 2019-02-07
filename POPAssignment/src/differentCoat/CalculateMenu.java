@@ -5,66 +5,92 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CalculateMenu {
 	private static final String HEADER = "List of clients Different Coat";
-	private static Scanner scanner = new Scanner(System.in); 
 	
-	public static void newCustomer() {
+	public static void newCustomer(ArrayList<Customer> customerList) {
+		String name, phone;
+		char roomType;	// avaliable S,R,C
+		double[] dimensions;
+		double surface = 0;
+		int cans;
 		
+		name = MyScanner.getString("Enter the customer's name: ");
+		phone = MyScanner.getString("Enter the customer's phone No: ");
+		roomType = MyScanner.getRoomType();
+		dimensions = MyScanner.getDimensions(roomType);
+		
+		// calculate dependent surface
+		switch (roomType) {
+		case 'S':
+			surface = SurfaceCalculator.squareRoom(dimensions[0], dimensions[1]);
+			break;
+		case 'R':
+			surface = SurfaceCalculator.rectangularRoom(dimensions[0], dimensions[1], dimensions[2]);
+			break;
+		case 'C':
+			surface = SurfaceCalculator.cylindricalRoom(dimensions[0], dimensions[1]);
+			break;
+		}
+		// calculate required cans of paint
+		cans = PaintRequiredCalculator.numberOfCans(surface);
+		
+		// adding new customer
+		customerList.add(new Customer(name, phone, cans));
 	}
 
 	public static void searchCustomer(ArrayList<Customer> customerList) {
-		boolean find = false;
-		int idToDisplay = -1;
-		do {
-			try {
-				System.out.print("Enter ID customer : ");
-				idToDisplay = Integer.parseInt(scanner.nextLine());
-			} catch (NumberFormatException e) {
-				System.out.println(e.getMessage());
-				System.out.println("Enter corect ID number");
-			}
-		} while (idToDisplay == -1);
+		int index;
 		
-		for (int i = 0; i < customerList.size(); i++)
-			if (customerList.get(i).getId() == idToDisplay) {
-				System.out.println("\n" + customerList.get(i));
-				find = true;
-			}
-		if ( ! find )
-			System.out.println("There is no client with id " + idToDisplay);
+		index = getIndexCustomer(customerList);
+		
+		System.out.println("\n" + customerList.get(index));
 	}
 
 	public static void removeCustomer(ArrayList<Customer> customerList) {
-		boolean find = false;
-		int idToRemove = -1;
-		do {
-			try {
-				System.out.print("Enter ID customer : ");
-				idToRemove = Integer.parseInt(scanner.nextLine());
-			} catch (NumberFormatException e) {
-				System.out.println(e.getMessage());
-				System.out.println("Enter corect ID number");
-			}
-		} while (idToRemove == -1);
+		int index;
 		
-		for (int i = 0; i < customerList.size(); i++)
-			if (customerList.get(i).getId() == idToRemove) {
-				System.out.println("\nRemmove " + customerList.get(i));
-				find = true;
-				customerList.remove(idToRemove);
-			}
-		if ( ! find )
-			System.out.println("There is no client with id " + idToRemove);
-
+		index = getIndexCustomer(customerList);
+		
+		System.out.println("\nRemmove " + customerList.get(index));
+		customerList.remove(index);
 	}
 
 	public static void displayCustomers(ArrayList<Customer> customerList) {
+		System.out.println("\n---- All Customers details ----");
 		for (Customer customer : customerList) {
 			System.out.println("\n" + customer);
 		}
+		
+	}
+
+	public static void editCustomer(ArrayList<Customer> customerList) {
+		int index;
+		
+		index = getIndexCustomer(customerList);
+		Customer customer = customerList.get(index);
+		
+		System.out.println("  --- Edit Customer with ID: " + customer.getId() + " ---");
+		
+		String name = MyScanner.getStringOrEmpty("\n  Type new name (Enter - skip): ");
+		if (name.length() > 0)
+			customer.setName(name);
+		
+		String phone = MyScanner.getStringOrEmpty("\n  Type new phone No (Enter - skip): ");
+		if (phone.length() > 0)
+			customer.setName(phone);
+		
+		// add calculation
+		Character roomType = MyScanner.getRoomTypeOrEmpty();
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 
@@ -84,13 +110,7 @@ public class CalculateMenu {
 		try (PrintWriter printWriter = new PrintWriter(PATH)) {
 			printWriter.println(HEADER);
 			for (Customer customer : customerList) {
-				printWriter.print(customer.getId());
-				printWriter.print('\t');
-				printWriter.print(customer.getName());
-				printWriter.print('\t');
-				printWriter.print(customer.getPhone());
-				printWriter.print('\t');
-				printWriter.println(customer.getPaintCans());
+				printWriter.println(customer.toSave());
 			}
 			System.out.println("Data saved to a file : " + PATH);
 		} catch (Exception e) {
@@ -124,24 +144,16 @@ public class CalculateMenu {
 		*/
 		// Input for text file
 		String customerLine;
-		String[] customerDetails;
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(PATH))) {
 			if (bufferedReader.readLine().equals(HEADER))
 				while ((customerLine = bufferedReader.readLine()) != null) {
-					customerDetails = customerLine.split("\t");
-					if (customerDetails.length == 4) {
-						// id of customer is ignored
-						Integer.parseInt(customerDetails[0]);
-						int cans = Integer.parseInt(customerDetails[3]);
-						// adding new customer
-						customerList.add(new Customer(customerDetails[1], customerDetails[2], cans));
-					} else
-						throw new IncompatibleClassChangeError("Data doesn't match the customer type");
+					// adding customer, getNewCustomer can throw eception
+					customerList.add(Customer.getNewCustomer(customerLine));
 				}
 			else
-				throw new IOException("Data doesn't match the customers list");
+				throw new IOException("This is not a list of Different Coat clients");
 			System.out.println("List loaded");
-		} catch (IncompatibleClassChangeError | NumberFormatException e1 ) {
+		} catch (IncorrectObjectTypeExeption e1 ) {
 			System.err.println(e1.getMessage());
 			System.out.println("I add temporary to list one client");
 			customerList.add(new Customer("Bogdan Pasterak", "0877-000000", 9));
@@ -155,5 +167,21 @@ public class CalculateMenu {
 
 		return customerList;
 	}
+	
+	private static int getIndexCustomer(ArrayList<Customer> customerList) {
+		int idToSearch;
+		
+		// until you enter the correct id number
+		do {
+			idToSearch = MyScanner.getInt("Enter ID customer: ");
+			
+			for (int i = 0; i < customerList.size(); i++)
+				if (customerList.get(i).getId() == idToSearch) {
+					return i;
+				}
+			System.out.println("There is no client with id " + idToSearch);
+		} while ( true );
+	}
+
 
 }

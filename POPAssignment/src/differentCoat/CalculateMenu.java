@@ -18,7 +18,7 @@ public class CalculateMenu {
 		
 		System.out.println("\n  --- Enter details of client ---");
 		name = MyScanner.getString("  Enter the customer's name: ");
-		phone = MyScanner.getString("  Enter the customer's phone No: ");
+		phone = MyScanner.getPhone(false);
 		roomType = MyScanner.getRoomType();
 		dimensions = MyScanner.getDimensions(roomType);
 		
@@ -90,8 +90,8 @@ public class CalculateMenu {
 			customer.setName(name);
 		
 		// if you want to change phone
-		System.out.print("\n  Current phone No : " + customer.getPhone());
-		phone = MyScanner.getStringOrEmpty("\n  Type new phone No (Enter - skip): ");
+		System.out.println("\n  Current phone No : " + customer.getPhone());
+		phone = MyScanner.getPhone(true);
 		if (phone.length() > 0)
 			customer.setPhone(phone);
 		

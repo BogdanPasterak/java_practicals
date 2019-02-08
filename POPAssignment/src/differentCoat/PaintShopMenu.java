@@ -11,7 +11,6 @@ public class PaintShopMenu {
 		
 		// load if avaliable customer list
 		ArrayList<Customer> customerList = CalculateMenu.loadList(PATH);
-		MyScanner.getPhone(false);
 		
 		// variable to hold the user's response
 		int choise;
@@ -29,7 +28,7 @@ public class PaintShopMenu {
 			System.out.println("  0.  Quit");
 			System.out.println("------------------------------------------------------");
 			
-			// take the choise int between 0 and 6
+			// take the choice int between 0 and 6
 			choise = MyScanner.getInt06();
 			
 			// call to the appropriate method

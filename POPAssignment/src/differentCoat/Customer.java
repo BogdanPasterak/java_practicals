@@ -95,7 +95,8 @@ public class Customer implements Serializable {
 					idLastCustomer = nrId - 1;
 				else if (idLastCustomer >= nrId)
 					throw new IncorrectObjectTypeExeption("Wrong order of customers on the list");
-				
+				if ( ! MyScanner.validatePhone(customerDetails[2]) )
+					throw new IncorrectObjectTypeExeption("Invalid phone No customer " + customerDetails[1]);
 				// return new customer
 				return new Customer(customerDetails[1], customerDetails[2], cans);
 			} catch (NumberFormatException e) {
@@ -103,7 +104,6 @@ public class Customer implements Serializable {
 			}
 		} else
 			throw new IncorrectObjectTypeExeption("Data number doesn't match the Customer type");
-		//return null;
 	}
 	
 	@Override

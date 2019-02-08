@@ -1,5 +1,5 @@
 List of clients Different Coat
 1	Jon    Doe	0877-333333	5
 2	Anna D'ark	0877-999999	3
-4	Jery Mc'Joe	+353 688 555 22	6
-5	Jeny Mc'Donalds	0877-122344	7
+4	Paddy	+353 688 555 22	6
+7	Jeny Mc'Donalds	0877-122344	7

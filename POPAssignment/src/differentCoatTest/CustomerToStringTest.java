@@ -12,7 +12,7 @@ public class CustomerToStringTest {
 	public void testToString() {
 
 		Customer customer = new Customer("Bogdan Pasterak", "087-1234-567", 5);
-		String expected =	"Customer ID - 1\n" +
+		String expected =	"Customer ID - " + customer.getId() + "\n" +
 							"  Name - Bogdan Pasterak\n" +
 							"  Phone Nr - 087-1234-567\n" +
 							"  Ordered paint cans - 5";

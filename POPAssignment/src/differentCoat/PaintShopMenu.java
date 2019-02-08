@@ -11,6 +11,7 @@ public class PaintShopMenu {
 		
 		// load if avaliable customer list
 		ArrayList<Customer> customerList = CalculateMenu.loadList(PATH);
+		MyScanner.getPhone(false);
 		
 		// variable to hold the user's response
 		int choise;

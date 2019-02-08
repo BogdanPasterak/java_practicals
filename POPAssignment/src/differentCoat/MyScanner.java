@@ -52,7 +52,7 @@ public class MyScanner {
 			if (enter.trim().isEmpty())
 				System.out.println("You have to enter some text.");
 		} while (enter.trim().isEmpty());
-		return null;
+		return enter;
 	}
 
 	public static char getRoomType() {
@@ -91,10 +91,10 @@ public class MyScanner {
 		// Appropriate message
 		switch (roomType) {
 		case 'S':
-			message = "  Enter height and size ( h.h  s.s ): ";
+			message = "  Enter height and length ( h.h  l.l ): ";
 			break;
 		case 'R':
-			message = "  Enter height, lenght and width ( h.h  l.l  w.w ): ";
+			message = "  Enter height, length and width ( h.h  l.l  w.w ): ";
 			break;
 		case 'C':
 			message = "  Enter height and diameter ( h.h  d.d ): ";
@@ -110,8 +110,9 @@ public class MyScanner {
 			if (enter.isEmpty())
 				System.out.println("  You have to enter some dimensions.");
 			else {
+				// Stream - new Class Java 8
 				dimensionsStrings = Arrays
-						.stream(enter.split("[- /:;,*\\t]"))
+						.stream(enter.split("[- /:;,*\\t\\\\]"))
 						.filter(s -> s.length()>0)
 						.toArray(String[]::new);
 				if ((dimensionsStrings.length == 2 && (roomType == 'S' || roomType == 'C'))
@@ -166,8 +167,8 @@ public class MyScanner {
 	public static Character getRoomTypeOrEmpty() {
 		String enter;
 		char room = 'X';
-		System.out.println("\n  Change calculations (Enter - skip)");
-		System.out.println("  --- Choice of room type ---");
+		
+		System.out.println("\n  --- Choice of room type (Enter - skip)---");
 		System.out.println("  S: Square shape room");
 		System.out.println("  R: Rectangular shape room");
 		System.out.println("  C: Cylindrical shape room");
@@ -187,6 +188,83 @@ public class MyScanner {
 			
 		} while (room != 'S' && room != 'R' && room != 'C');
 		return room;
+	}
+	
+	public static String getPhone(boolean canSkip) {
+		String enter;
+		String[] parts;
+		int counter;
+
+		do {
+			System.out.print("  Enter the customer's phone No: (0XX XXX XXXX)");
+			enter = scanner.nextLine().trim();
+			
+			if (enter.isEmpty()) {
+				if (canSkip)
+					return null;
+				else
+					System.out.println("  You have to enter some phone No.");
+			} else {
+				// Stream - new Class Java 8
+				parts = Arrays
+						// change to steram Array of String ( split(RegEx))
+						.stream(enter.split("[- /.:;,*\\t\\\\]"))
+						// remove empty String
+						.filter(s -> s.length() > 0)
+						// change to String[]
+						.toArray(String[]::new);
+				// secound and third stick together
+				if (parts.length == 3)
+					parts[1] += parts[2];
+				// only 2 or 3 parts
+				if (	(parts.length < 1 || parts.length > 3) ||
+						// first parts length (from 01 to 00353401)
+						(parts[0].length() > 8 || parts[0].length() < 2) ||
+						// second parts length beetwen 5 and 7
+						(parts[1].length() > 7 || parts[1].length() < 5) ) {
+					System.out.println("Wrong data format.");
+				} else {
+					// proper size
+					// remove prefix to next validation
+					// +3531 or +353401 
+					if (parts[0].charAt(0) == '+' && parts[0].length() >= 5 && parts[0].substring(1, 4).equals("353") ) {
+						parts[0] = parts[0].substring(4);
+						// or 0035374 
+					} else if (parts[0].length() >= 6 && parts[0].substring(0, 5).equals("00353") ) {
+						parts[0] = parts[0].substring(5);
+						// or 074
+					} else if (parts[0].charAt(0) == '0' ) {
+						parts[0] = parts[0].substring(1);												
+					} else {
+						System.out.println("Wrong data format.");
+					}
+					System.out.println(parts[0] + " " + parts[1]);
+					// validate numbers
+					if (parts[0].matches("[0-9]{1,3}") && parts[1].matches("[0-9]{5,7}")) {
+						// Dublin
+						if ((parts[0].charAt(0) == '0' && parts[0].length() == 1) ||
+								// Cork
+								(parts[0].charAt(0) == '2' && parts[0].length() == 2 && parts[0].substring(1).matches("[123456789]")) ||
+								// more valid number
+								(parts[0].charAt(0) == '4' && parts[0].length() == 3 && parts[0].charAt(1) == '0' && parts[0].substring(2).matches("[14]")) ||
+								(parts[0].charAt(0) == '4' && parts[0].length() == 2 && parts[0].substring(1).matches("[179]")) ||
+								(parts[0].charAt(0) == '5' && parts[0].length() == 3 && parts[0].charAt(1) == '0' && parts[0].substring(2).matches("[45]")) ||
+								(parts[0].charAt(0) == '5' && parts[0].length() == 2 && parts[0].substring(1).matches("[1-9]")) ||
+								(parts[0].charAt(0) == '6' && parts[0].length() == 2 && parts[0].substring(1).matches("[1-9]")) ||
+								(parts[0].charAt(0) == '7' && parts[0].length() == 2 && parts[0].substring(1).matches("[14]")) ||
+								(parts[0].charAt(0) == '9' && parts[0].length() == 2 && parts[0].substring(1).matches("[0-9]")) ||
+								// mobile
+								(parts[0].charAt(0) == '8' && parts[0].length() == 2 && parts[0].substring(1).matches("[35679]") && parts[1].length() == 7) )
+							return enter;
+						else 
+							System.out.println("Wrong number.");
+					} else {
+						System.out.println("Wrong data format.");
+					}
+				} 
+			}
+		} while (true);
+		
 	}
 
 }

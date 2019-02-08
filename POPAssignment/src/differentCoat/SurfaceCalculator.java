@@ -3,15 +3,15 @@ package differentCoat;
 public class SurfaceCalculator {
 	
 	// calculating the wall area for painting in a square room
-	public static double squareRoom(double height, double side) {
+	public static double squareRoom(double height, double length) {
 		// 4 walls with dimension height and side
-		return 4 * height * side;
+		return 4 * height * length;
 	}
 
 	// calculating the wall area for painting in a rectangular room
-	public static double rectangularRoom(double height, double lenght, double width) {
+	public static double rectangularRoom(double height, double length, double width) {
 		// 2 walls width by height and 2 walls lenght by height 
-		return 2 * height * ( width + lenght ) ;
+		return 2 * height * ( width + length ) ;
 	}
 
 	// calculating the wall area for painting in a cylindrical room

@@ -16,8 +16,9 @@ public class CalculateMenu {
 		double surface = 0;
 		int cans;
 		
-		name = MyScanner.getString("Enter the customer's name: ");
-		phone = MyScanner.getString("Enter the customer's phone No: ");
+		System.out.println("\n  --- Enter details of client ---");
+		name = MyScanner.getString("  Enter the customer's name: ");
+		phone = MyScanner.getString("  Enter the customer's phone No: ");
 		roomType = MyScanner.getRoomType();
 		dimensions = MyScanner.getDimensions(roomType);
 		
@@ -38,6 +39,8 @@ public class CalculateMenu {
 		
 		// adding new customer
 		customerList.add(new Customer(name, phone, cans));
+		
+		System.out.println("\nAdded " + customerList.get(customerList.size()-1));
 	}
 
 	public static void searchCustomer(ArrayList<Customer> customerList) {
@@ -67,31 +70,57 @@ public class CalculateMenu {
 
 	public static void editCustomer(ArrayList<Customer> customerList) {
 		int index;
+		Customer customer;
+		String name, phone;
+		Character roomType;	// avaliable S,R,C and null
+		double[] dimensions;
+		double surface = 0;
+		int cans;
 		
+		// customer to edit
 		index = getIndexCustomer(customerList);
-		Customer customer = customerList.get(index);
+		customer = customerList.get(index);
 		
 		System.out.println("  --- Edit Customer with ID: " + customer.getId() + " ---");
 		
-		String name = MyScanner.getStringOrEmpty("\n  Type new name (Enter - skip): ");
+		// if you want to change name
+		System.out.print("\n  Current name : " + customer.getName());
+		name = MyScanner.getStringOrEmpty("\n  Type new name (Enter - skip): ");
 		if (name.length() > 0)
 			customer.setName(name);
 		
-		String phone = MyScanner.getStringOrEmpty("\n  Type new phone No (Enter - skip): ");
+		// if you want to change phone
+		System.out.print("\n  Current phone No : " + customer.getPhone());
+		phone = MyScanner.getStringOrEmpty("\n  Type new phone No (Enter - skip): ");
 		if (phone.length() > 0)
-			customer.setName(phone);
+			customer.setPhone(phone);
 		
-		// add calculation
-		Character roomType = MyScanner.getRoomTypeOrEmpty();
+		// if you want to change calculation
+		System.out.print("\n  Current ordered paint cans : " + customer.getPaintCans());
+		roomType = MyScanner.getRoomTypeOrEmpty();
+		if (roomType != null) {
+			dimensions = MyScanner.getDimensions(roomType);
+			
+			// calculate dependent surface
+			switch (roomType) {
+			case 'S':
+				surface = SurfaceCalculator.squareRoom(dimensions[0], dimensions[1]);
+				break;
+			case 'R':
+				surface = SurfaceCalculator.rectangularRoom(dimensions[0], dimensions[1], dimensions[2]);
+				break;
+			case 'C':
+				surface = SurfaceCalculator.cylindricalRoom(dimensions[0], dimensions[1]);
+				break;
+			}
+			// calculate required cans of paint
+			cans = PaintRequiredCalculator.numberOfCans(surface);
+			// and set new value
+			customer.setPaintCans(cans);
+		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
+		System.out.println("\nEdited " + customer);
+
 	}
 
 	public static void saveList(ArrayList<Customer> customerList, final String PATH) {

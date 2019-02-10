@@ -221,7 +221,7 @@ public class MyScanner {
 		// Stream - new Class Java 8
 		parts = Arrays
 				// change to steram Array of String ( split(RegEx))
-				.stream(phone.split("[- /.:;,*\\t\\\\]"))
+				.stream(phone.split("[- /.:;,*\\t]"))
 				// remove empty String
 				.filter(s -> s.length() > 0)
 				// change to String[]
@@ -278,7 +278,7 @@ public class MyScanner {
 	// https://en.wikipedia.org/wiki/Telephone_numbers_in_the_Republic_of_Ireland
 	public static boolean validatePhoneNo(String phone) {
 		
-		phone = phone.replaceAll("[- /.:;,*\\t\\\\]", "");
+		phone = phone.replaceAll("[- /.:;,*\\t]", "");
 		if (phone.length() < 6)
 			return false;
 		// change prefix to '0'
@@ -286,52 +286,61 @@ public class MyScanner {
 			phone = "0" + phone.substring(5);
 		else if ( phone.startsWith("+353") )
 			phone = "0" + phone.substring(4);
-		if (phone.charAt(0) != '0')
+		
+		if ( ! phone.matches("^[\\d]{7,11}$") )
+		// if (phone.charAt(0) != '0')
 			return false;
 		// Dublin
-		if (phone.startsWith("01") && phone.length() >= 7 && phone.length() <= 9) {
+		if (phone.matches("^(01).{5,7}$")) {
 			prefix = phone.substring(0, 2);
 			subscriber = phone.substring(2);
 			return true;
-		} else if (phone.startsWith("02[1-9]") && phone.length() >= 8 && phone.length() <= 10) {
+		} else if (phone.matches("^(02[1-9]).{5,7}$")) {
 			prefix = phone.substring(0, 3);
 			subscriber = phone.substring(3);
 			return true;
-		} else if (phone.startsWith("040[24]") && phone.length() >= 9 && phone.length() <= 11) {
+		} else if (phone.matches("^(040[24]).{5,7}$")) {
 			prefix = phone.substring(0, 4);
 			subscriber = phone.substring(4);
 			return true;
-		} else if (phone.startsWith("04[1-79]") && phone.length() >= 8 && phone.length() <= 10) {
+		} else if (phone.matches("^(04[1-79]).{5,7}$")) {
 			prefix = phone.substring(0, 3);
 			subscriber = phone.substring(3);
 			return true;
-		} else if (phone.startsWith("050[45]") && phone.length() >= 9 && phone.length() <= 11) {
+		} else if (phone.matches("^(050[45]).{5,7}$")) {
 			prefix = phone.substring(0, 4);
 			subscriber = phone.substring(4);
 			return true;
-		} else if (phone.startsWith("05[1-9]") && phone.length() >= 8 && phone.length() <= 10) {
+		} else if (phone.matches("^(05[1-9]).{5,7}$")) {
 			prefix = phone.substring(0, 3);
 			subscriber = phone.substring(3);
 			return true;
-		} else if (phone.startsWith("06[1-9]") && phone.length() >= 8 && phone.length() <= 10) {
+		} else if (phone.matches("^(06[1-9]).{5,7}$")) {
 			prefix = phone.substring(0, 3);
 			subscriber = phone.substring(3);
 			return true;
-		} else if (phone.startsWith("07[14]") && phone.length() >= 8 && phone.length() <= 10) {
+		} else if (phone.matches("^(07[14]).{5,7}$")) {
 			prefix = phone.substring(0, 3);
 			subscriber = phone.substring(3);
 			return true;
-		} else if (phone.startsWith("09[0-9]") && phone.length() >= 8 && phone.length() <= 10) {
+		} else if (phone.matches("^(09[0-9]).{5,7}$")) {
 			prefix = phone.substring(0, 3);
 			subscriber = phone.substring(3);
 			return true;
 		// mobile
-		} else if (phone.startsWith("08[35679]") && phone.length() == 10) {
+		} else if (phone.matches("^(08[35679]).{7}$")) {
 			prefix = phone.substring(0, 3);
 			subscriber = phone.substring(3);
 			return true;
 		}
 		return false;
+	}
+	
+	public static String formatPhoneNo(String phone) {
+		if ( validatePhoneNo(phone))
+			return prefix + " " + subscriber.substring(0, 3) + " " + subscriber.substring(3);
+		else
+			return null;
 	}
 	
 	

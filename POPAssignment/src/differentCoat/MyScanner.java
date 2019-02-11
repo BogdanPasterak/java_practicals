@@ -8,6 +8,7 @@ public class MyScanner {
 	private static String prefix;
 	private static String subscriber;
 	
+	// get int form 0 to 6
 	public static int getInt06() {
 		int answer = -1;
 		
@@ -22,6 +23,7 @@ public class MyScanner {
 		return answer;
 	}
 	
+	// get int
 	public static int getInt(String message) {
 		String enter;
 		int answer = -1;
@@ -45,6 +47,7 @@ public class MyScanner {
 		return answer;
 	}
 
+	// get Srting ( not empty )
 	public static String getString(String message) {
 		String enter;
 		
@@ -57,6 +60,7 @@ public class MyScanner {
 		return enter;
 	}
 
+	// only s, r or c character avaliable, lower or upper case
 	public static char getRoomType() {
 		String enter;
 		char room = 'X';
@@ -83,6 +87,7 @@ public class MyScanner {
 		return room;
 	}
 
+	// get 2 or 3 dimensions of room
 	public static double[] getDimensions(char roomType) {
 		double[] dimensions;
 		String[] dimensionsStrings;
@@ -105,6 +110,7 @@ public class MyScanner {
 			message = "  No Data";
 		}
 
+		// until type proper value
 		do {
 			System.out.print(message);
 			enter = scanner.nextLine().trim();
@@ -113,17 +119,21 @@ public class MyScanner {
 				System.out.println("  You have to enter some dimensions.");
 			else {
 				// Stream - new Class Java 8
+				// build String array
 				dimensionsStrings = Arrays
 						.stream(enter.split("[- /:;,*\\t\\\\]"))
 						.filter(s -> s.length()>0)
 						.toArray(String[]::new);
+				// number of variable
 				if ((dimensionsStrings.length == 2 && (roomType == 'S' || roomType == 'C'))
 						|| (dimensionsStrings.length == 3 && roomType == 'R' )) {
 					ok = true;
+					// if all are numbers
 					for (String dimension : dimensionsStrings) {
 						ok = ok && isDouble(dimension);
 					}
 					if ( ok ) {
+						// message
 						System.out.print("    You typed : ");
 						dimensions = new double[dimensionsStrings.length];
 						for (int i = 0; i < dimensionsStrings.length; i++) {
@@ -148,6 +158,7 @@ public class MyScanner {
 		return null;
 	}
 
+	// test of String is double
 	private static boolean isDouble(String dimension) {
 		boolean is = true;
 		
@@ -166,10 +177,13 @@ public class MyScanner {
 		return scanner.nextLine().trim();
 	}
 
+	
+	// only s, r, c or null Character avaliable
 	public static Character getRoomTypeOrEmpty() {
 		String enter;
 		char room = 'X';
 		
+		// mini menu
 		System.out.println("\n  --- Choice of room type (Enter - skip)---");
 		System.out.println("  S: Square shape room");
 		System.out.println("  R: Rectangular shape room");
@@ -181,9 +195,11 @@ public class MyScanner {
 			enter = scanner.nextLine().trim().toUpperCase();
 			
 			if (enter.isEmpty())
+				// skip
 				return null;
 			else {
 				room = enter.charAt(0);
+				// wrong option
 				if (room != 'S' && room != 'R' && room != 'C')
 					System.out.println("    We do not have that type.");
 			}
@@ -192,6 +208,7 @@ public class MyScanner {
 		return room;
 	}
 	
+	// get valid phone No
 	public static String getPhone(boolean canSkip) {
 		String enter;
 
@@ -202,12 +219,12 @@ public class MyScanner {
 			
 			if (enter.isEmpty()) {
 				if (canSkip)
-					return enter;
+					return null;
 				else
 					System.out.println("  You have to enter some phone No.");
 			} else {
-				if (validatePhone(enter))
-					return enter;
+				if (validatePhoneNo(enter))
+					return formatPhoneNo(enter);
 				else
 					System.out.println("Invalid number.");
 			}
@@ -215,70 +232,10 @@ public class MyScanner {
 		
 	}
 	
-	public static boolean validatePhone(String phone) {
-		String[] parts;
-		
-		// Stream - new Class Java 8
-		parts = Arrays
-				// change to steram Array of String ( split(RegEx))
-				.stream(phone.split("[- /.:;,*\\t]"))
-				// remove empty String
-				.filter(s -> s.length() > 0)
-				// change to String[]
-				.toArray(String[]::new);
-		// secound and third stick together
-		if (parts.length == 3)
-			parts[1] += parts[2];
-		// only 2 or 3 parts
-		if (	(parts.length < 1 || parts.length > 3) ||
-				// first parts length (from 01 to 00353401)
-				(parts[0].length() > 8 || parts[0].length() < 2) ||
-				// second parts length beetwen 5 and 7
-				(parts[1].length() > 7 || parts[1].length() < 5) ) {
-			return false;
-		} else {
-			// proper size
-			// remove prefix to next validation
-			// +3531 or +353401 
-			if (parts[0].charAt(0) == '+' && parts[0].length() >= 5 && parts[0].substring(1, 4).equals("353") ) {
-				parts[0] = parts[0].substring(4);
-				// or 0035374 
-			} else if (parts[0].length() >= 6 && parts[0].substring(0, 5).equals("00353") ) {
-				parts[0] = parts[0].substring(5);
-				// or 074
-			} else if (parts[0].charAt(0) == '0' ) {
-				parts[0] = parts[0].substring(1);												
-			} else {
-				return false;
-			}
-			// System.out.println(parts[0] + " " + parts[1]);
-			// validate numbers
-			if (parts[0].matches("[0-9]{1,3}") && parts[1].matches("[0-9]{5,7}")) {
-				// Dublin
-				if ((parts[0].charAt(0) == '1' && parts[0].length() == 1) ||
-						// Cork
-						(parts[0].charAt(0) == '2' && parts[0].length() == 2 && parts[0].substring(1).matches("[123456789]")) ||
-						// more valid number
-						(parts[0].charAt(0) == '4' && parts[0].length() == 3 && parts[0].charAt(1) == '0' && parts[0].substring(2).matches("[14]")) ||
-						(parts[0].charAt(0) == '4' && parts[0].length() == 2 && parts[0].substring(1).matches("[179]")) ||
-						(parts[0].charAt(0) == '5' && parts[0].length() == 3 && parts[0].charAt(1) == '0' && parts[0].substring(2).matches("[45]")) ||
-						(parts[0].charAt(0) == '5' && parts[0].length() == 2 && parts[0].substring(1).matches("[1-9]")) ||
-						(parts[0].charAt(0) == '6' && parts[0].length() == 2 && parts[0].substring(1).matches("[1-9]")) ||
-						(parts[0].charAt(0) == '7' && parts[0].length() == 2 && parts[0].substring(1).matches("[14]")) ||
-						(parts[0].charAt(0) == '9' && parts[0].length() == 2 && parts[0].substring(1).matches("[0-9]")) ||
-						// mobile
-						(parts[0].charAt(0) == '8' && parts[0].length() == 2 && parts[0].substring(1).matches("[35679]") && parts[1].length() == 7) )
-					return true;
-			}
-		}
-	
-		return false;
-	}
-	
 	// https://en.wikipedia.org/wiki/Telephone_numbers_in_the_Republic_of_Ireland
 	public static boolean validatePhoneNo(String phone) {
 		
-		phone = phone.replaceAll("[- /.:;,*\\t]", "");
+		phone = phone.replaceAll("[- /.:;,*\\t()]", "");
 		if (phone.length() < 6)
 			return false;
 		// change prefix to '0'
@@ -295,6 +252,7 @@ public class MyScanner {
 			prefix = phone.substring(0, 2);
 			subscriber = phone.substring(2);
 			return true;
+		// more option
 		} else if (phone.matches("^(02[1-9]).{5,7}$")) {
 			prefix = phone.substring(0, 3);
 			subscriber = phone.substring(3);
@@ -336,6 +294,7 @@ public class MyScanner {
 		return false;
 	}
 	
+	// change format phone No to proper if not return null
 	public static String formatPhoneNo(String phone) {
 		if ( validatePhoneNo(phone))
 			return prefix + " " + subscriber.substring(0, 3) + " " + subscriber.substring(3);

@@ -8,8 +8,8 @@ public class IncorrectObjectTypeExeption extends Exception {
 		super();
 	}
 
-	public IncorrectObjectTypeExeption(String arg0) {
-		super(arg0);
+	public IncorrectObjectTypeExeption(String message) {
+		super(message);
 	}
 
 	

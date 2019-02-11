@@ -23,7 +23,7 @@ public class CustomerGetterSetterTest {
 	
 	@Test
 	public void testGetPhone() {
-		assertEquals("087-1234-567", customer.getPhone());
+		assertEquals("087 123 4567", customer.getPhone());
 	}
 
 	@Test
@@ -46,15 +46,15 @@ public class CustomerGetterSetterTest {
 	
 	@Test
 	public void testSetPhone() {
-		customer.setPhone("00353-777-2222-3333");
-		assertEquals("00353-777-2222-3333", customer.getPhone());
+		customer.setPhone("00353-87-2222-333");
+		assertEquals("087 222 2333", customer.getPhone());
 	}
 	
 	@Test
 	public void testSetPhoneWithTab() {
 		// setter replace tab with 4 spaces
-		customer.setPhone("00353	777	2222	3333");
-		assertEquals("00353    777    2222    3333", customer.getPhone());
+		customer.setPhone("(00353)	87	2222	333");
+		assertEquals("087 222 2333", customer.getPhone());
 	}
 	
 	@Test
@@ -126,13 +126,13 @@ public class CustomerGetterSetterTest {
 	@Test
 	public void testGetNewCustomerNumberDataTrim() {
 		try {
-			customer = Customer.getNewCustomer(" \t50\tBogdan Pasterak\t1234567890\t5\t");
+			customer = Customer.getNewCustomer(" \t50\tBogdan Pasterak\t0871234567\t5\t");
 		} catch (IncorrectObjectTypeExeption e) {
 			
 		}
 		// if not catch error pass test
 		assertEquals(50, customer.getId());
-		assertEquals("1234567890", customer.getPhone());
+		assertEquals("087 123 4567", customer.getPhone());
 		assertEquals("Bogdan Pasterak", customer.getName());
 		assertEquals(5, customer.getPaintCans());
 	}
@@ -141,12 +141,12 @@ public class CustomerGetterSetterTest {
 	public void testToSave() {
 		
 		customer.setName("Bogdan");
-		customer.setPhone("12345");
+		customer.setPhone("/+353/87 1234567");
 		customer.setPaintCans(12);
 		// start string with id
 		String expected = String.valueOf(customer.getId());
 		// and rest ( separator tab )
-		expected += "\tBogdan\t12345\t12";
+		expected += "\tBogdan\t087 123 4567\t12";
 		
 		assertEquals(expected, customer.toSave());
 	}

@@ -43,7 +43,7 @@ public class Customer implements Serializable {
 	}
 	public void setPhone(String phone) {
 		// replace the tab with four spaces, the tab is a separator when writing data
-		this.phone = phone.trim().replaceAll("\t", "    ");
+		this.phone = MyScanner.formatPhoneNo(phone);
 	}
 
 	public int getPaintCans() {
@@ -90,20 +90,24 @@ public class Customer implements Serializable {
 				// id and paintCans are int type
 				int nrId = Integer.parseInt(customerDetails[0]);
 				int cans = Integer.parseInt(customerDetails[3]);
+				// validate phone
+				String phoneNo = MyScanner.formatPhoneNo(customerDetails[2]);
 				// if a gap in id numbers leave a gap
 				if (idLastCustomer + 1 < nrId )
 					idLastCustomer = nrId - 1;
 				else if (idLastCustomer >= nrId)
 					throw new IncorrectObjectTypeExeption("Wrong order of customers on the list");
-				if ( ! MyScanner.validatePhone(customerDetails[2]) )
-					throw new IncorrectObjectTypeExeption("Invalid phone No customer " + customerDetails[1]);
+				if (phoneNo == null)
+					throw new IncorrectObjectTypeExeption("Wrong phone No customer " + customerDetails[1]);
+				
 				// return new customer
-				return new Customer(customerDetails[1], customerDetails[2], cans);
+				return new Customer(customerDetails[1], phoneNo, cans);
 			} catch (NumberFormatException e) {
 				throw new IncorrectObjectTypeExeption("Data type not compatible with Customer data");
 			}
 		} else
 			throw new IncorrectObjectTypeExeption("Data number doesn't match the Customer type");
+		//return null;
 	}
 	
 	@Override

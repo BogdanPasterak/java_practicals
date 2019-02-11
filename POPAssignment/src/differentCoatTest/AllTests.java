@@ -5,8 +5,15 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ CustomerCreateTest.class, CustomerGetterSetterTest.class, CustomerToStringTest.class,
-		PaintRequiredCalculatorTest.class, SurfaceCalculatorTest.class })
+@SuiteClasses({
+	CustomerCreateTest.class,
+	CustomerGetterSetterTest.class,
+	CustomerToStringTest.class,
+	PaintRequiredCalculatorTest.class,
+	SurfaceCalculatorTest.class,
+	ValidatePhoneNoTest.class,
+	FormatPhoneNoTest.class
+	})
 public class AllTests {
 
 }

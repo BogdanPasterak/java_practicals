@@ -84,8 +84,8 @@ public class CalculateMenu {
 		System.out.println("  --- Edit Customer with ID: " + customer.getId() + " ---");
 		
 		// if you want to change name
-		System.out.print("\n  Current name : " + customer.getName());
-		name = MyScanner.getStringOrEmpty("\n  Type new name (Enter - skip): ");
+		System.out.println("\n  Current name : " + customer.getName());
+		name = MyScanner.getStringOrEmpty("  Type new name (Enter - skip): ");
 		if (name.length() > 0)
 			customer.setName(name);
 		
@@ -185,13 +185,13 @@ public class CalculateMenu {
 		} catch (IncorrectObjectTypeExeption e1 ) {
 			System.err.println(e1.getMessage());
 			System.out.println("I add temporary to list one client");
-			customerList.add(new Customer("Bogdan Pasterak", "0877-000000", 9));
+			customerList.add(new Customer("Bogdan Pasterak", "087 7000000", 9));
 		} catch (IOException e2) {
 			System.err.println(e2.getMessage());
 			System.out.println("I add temporary to list three clients");
-			customerList.add(new Customer("Jon Doe", "0877-333333", 5));
-			customerList.add(new Customer("Anna D'ark", "0877-999999", 3));
-			customerList.add(new Customer("Jeny Mc'Donalds", "0877-111111", 7));
+			customerList.add(new Customer("Jon Doe", "087 7333333", 5));
+			customerList.add(new Customer("Anna D'ark", "087 7999999", 3));
+			customerList.add(new Customer("Jeny Mc'Donalds", "087 7111111", 7));
 		}
 
 		return customerList;

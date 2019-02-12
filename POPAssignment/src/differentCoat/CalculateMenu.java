@@ -16,6 +16,7 @@ public class CalculateMenu {
 		double surface = 0;
 		int cans;
 		
+		// get customer details
 		System.out.println("\n  --- Enter details of client ---");
 		name = MyScanner.getString("  Enter the customer's name: ");
 		phone = MyScanner.getPhone(false);
@@ -46,22 +47,28 @@ public class CalculateMenu {
 	public static void searchCustomer(ArrayList<Customer> customerList) {
 		int index;
 		
+		// get avaliable index
 		index = getIndexCustomer(customerList);
 		
+		// print using toString()
 		System.out.println("\n" + customerList.get(index));
 	}
 
 	public static void removeCustomer(ArrayList<Customer> customerList) {
 		int index;
 		
+		// get avaliable index
 		index = getIndexCustomer(customerList);
-		
+
+		// Print and remove client
 		System.out.println("\nRemmove " + customerList.get(index));
 		customerList.remove(index);
 	}
 
 	public static void displayCustomers(ArrayList<Customer> customerList) {
+		
 		System.out.println("\n---- All Customers details ----");
+		// Print all on list
 		for (Customer customer : customerList) {
 			System.out.println("\n" + customer);
 		}
@@ -69,6 +76,7 @@ public class CalculateMenu {
 	}
 
 	public static void editCustomer(ArrayList<Customer> customerList) {
+		// variable
 		int index;
 		Customer customer;
 		String name, phone;
@@ -92,7 +100,7 @@ public class CalculateMenu {
 		// if you want to change phone
 		System.out.println("\n  Current phone No : " + customer.getPhone());
 		phone = MyScanner.getPhone(true);
-		if (phone.length() > 0)
+		if (phone != null)
 			customer.setPhone(phone);
 		
 		// if you want to change calculation
@@ -127,7 +135,7 @@ public class CalculateMenu {
 		
 		// try / catch with source
 		/*
-		// OO save
+		// OO save , data in binary format
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PATH))){
 			oos.writeObject(customerList);
 			System.out.println("The customer list save is successful");
@@ -139,6 +147,7 @@ public class CalculateMenu {
 		try (PrintWriter printWriter = new PrintWriter(PATH)) {
 			printWriter.println(HEADER);
 			for (Customer customer : customerList) {
+				// seve customer as text line
 				printWriter.println(customer.toSave());
 			}
 			System.out.println("Data saved to a file : " + PATH);
@@ -197,6 +206,7 @@ public class CalculateMenu {
 		return customerList;
 	}
 	
+	// get 
 	private static int getIndexCustomer(ArrayList<Customer> customerList) {
 		int idToSearch;
 		

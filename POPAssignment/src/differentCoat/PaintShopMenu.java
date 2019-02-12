@@ -2,6 +2,16 @@ package differentCoat;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Bogdan Pasterak
+ * POP Assignment
+ * tutor Angela Mercy
+ * Letterkenny Training Center
+ * 15/02/2019
+ *
+ */
+
 public class PaintShopMenu {
 	// vesion for object stream
 	// private final static String PATH = "customerList.ser";

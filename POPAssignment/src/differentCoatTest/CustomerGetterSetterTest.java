@@ -2,6 +2,7 @@ package differentCoatTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,8 +41,8 @@ public class CustomerGetterSetterTest {
 	@Test
 	public void testSetNameWithTab() {
 		// setter replace tab with 4 spaces
-		customer.setName("Bob\t\tD'\tClark");
-		assertEquals("Bob        D'    Clark", customer.getName());
+		customer.setName("Bob\tD'\tClark");
+		assertEquals("Bob    D'    Clark", customer.getName());
 	}
 	
 	@Test
@@ -128,7 +129,7 @@ public class CustomerGetterSetterTest {
 		try {
 			customer = Customer.getNewCustomer(" \t50\tBogdan Pasterak\t0871234567\t5\t");
 		} catch (IncorrectObjectTypeExeption e) {
-			
+			fail();
 		}
 		// if not catch error pass test
 		assertEquals(50, customer.getId());

@@ -3,5 +3,3 @@ List of clients Different Coat
 2	Anna D'ark	0402 999 9999	3
 4	Paddy Someone	068 855 5221	6
 7	Jeny Mc'Donalds	087 712 2344	7
-8	aaa	023 435 3672	42
-10	ffff	089 345 2677	9

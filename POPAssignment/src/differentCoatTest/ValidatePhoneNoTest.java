@@ -80,57 +80,57 @@ public class ValidatePhoneNoTest {
 	
 	// Invalid numbers
 	@Test
-	public void testTrue15() {
+	public void testFalse15() {
 		assertFalse(MyScanner.validatePhoneNo("00 1234567"));;
 	}
 	
 	@Test
-	public void testTrue16() {
+	public void testFalse16() {
 		assertFalse(MyScanner.validatePhoneNo("01 12345678"));;
 	}
 
 	@Test
-	public void testTrue17() {
+	public void testFalse17() {
 		assertFalse(MyScanner.validatePhoneNo("01 1234"));;
 	}
 
 	@Test
-	public void testTrue18() {
+	public void testFalse18() {
 		assertFalse(MyScanner.validatePhoneNo("0402 1234"));;
 	}
 
 	@Test
-	public void testTrue19() {
+	public void testFalse19() {
 		assertFalse(MyScanner.validatePhoneNo("0402 123456789"));;
 	}
 
 	@Test
-	public void testTrue20() {
+	public void testFalse20() {
 		assertFalse(MyScanner.validatePhoneNo("0403 1234567"));;
 	}
 
 	@Test
-	public void testTrue21() {
+	public void testFalse21() {
 		assertFalse(MyScanner.validatePhoneNo("0032374 1234567"));;
 	}
 
 	@Test
-	public void testTrue22() {
+	public void testFalse22() {
 		assertFalse(MyScanner.validatePhoneNo("+32374 1234567"));;
 	}
 
 	@Test
-	public void testTrue23() {
+	public void testFalse23() {
 		assertFalse(MyScanner.validatePhoneNo("087 123456"));;
 	}
 
 	@Test
-	public void testTrue24() {
+	public void testFalse24() {
 		assertFalse(MyScanner.validatePhoneNo("087 12345678"));;
 	}
 
 	@Test
-	public void testTrue25() {
+	public void testFalse25() {
 		assertFalse(MyScanner.validatePhoneNo("087 1234S67"));;
 	}
 }

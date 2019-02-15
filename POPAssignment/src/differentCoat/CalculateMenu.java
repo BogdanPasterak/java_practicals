@@ -51,7 +51,8 @@ public class CalculateMenu {
 		index = getIndexCustomer(customerList);
 		
 		// print using toString()
-		System.out.println("\n" + customerList.get(index));
+		if (index != -1)
+			System.out.println("\n" + customerList.get(index));
 	}
 
 	public static void removeCustomer(ArrayList<Customer> customerList) {
@@ -60,9 +61,11 @@ public class CalculateMenu {
 		// get avaliable index
 		index = getIndexCustomer(customerList);
 
-		// Print and remove client
-		System.out.println("\nRemmove " + customerList.get(index));
-		customerList.remove(index);
+		if (index != -1) {
+			// Print and remove client
+			System.out.println("\nRemmove " + customerList.get(index));
+			customerList.remove(index);
+		}
 	}
 
 	public static void displayCustomers(ArrayList<Customer> customerList) {
@@ -87,47 +90,49 @@ public class CalculateMenu {
 		
 		// customer to edit
 		index = getIndexCustomer(customerList);
-		customer = customerList.get(index);
-		
-		System.out.println("  --- Edit Customer with ID: " + customer.getId() + " ---");
-		
-		// if you want to change name
-		System.out.println("\n  Current name : " + customer.getName());
-		name = MyScanner.getStringOrEmpty("  Type new name (Enter - skip): ");
-		if (name.length() > 0)
-			customer.setName(name);
-		
-		// if you want to change phone
-		System.out.println("\n  Current phone No : " + customer.getPhone());
-		phone = MyScanner.getPhone(true);
-		if (phone != null)
-			customer.setPhone(phone);
-		
-		// if you want to change calculation
-		System.out.print("\n  Current ordered paint cans : " + customer.getPaintCans());
-		roomType = MyScanner.getRoomTypeOrEmpty();
-		if (roomType != null) {
-			dimensions = MyScanner.getDimensions(roomType);
+		if (index != -1) {
+			customer = customerList.get(index);
 			
-			// calculate dependent surface
-			switch (roomType) {
-			case 'S':
-				surface = SurfaceCalculator.squareRoom(dimensions[0], dimensions[1]);
-				break;
-			case 'R':
-				surface = SurfaceCalculator.rectangularRoom(dimensions[0], dimensions[1], dimensions[2]);
-				break;
-			case 'C':
-				surface = SurfaceCalculator.cylindricalRoom(dimensions[0], dimensions[1]);
-				break;
+			System.out.println("  --- Edit Customer with ID: " + customer.getId() + " ---");
+			
+			// if you want to change name
+			System.out.println("\n  Current name : " + customer.getName());
+			name = MyScanner.getStringOrEmpty("  Type new name (Enter - skip): ");
+			if (name.length() > 0)
+				customer.setName(name);
+			
+			// if you want to change phone
+			System.out.println("\n  Current phone No : " + customer.getPhone());
+			phone = MyScanner.getPhone(true);
+			if (phone != null)
+				customer.setPhone(phone);
+			
+			// if you want to change calculation
+			System.out.print("\n  Current ordered paint cans : " + customer.getPaintCans());
+			roomType = MyScanner.getRoomTypeOrEmpty();
+			if (roomType != null) {
+				dimensions = MyScanner.getDimensions(roomType);
+				
+				// calculate dependent surface
+				switch (roomType) {
+				case 'S':
+					surface = SurfaceCalculator.squareRoom(dimensions[0], dimensions[1]);
+					break;
+				case 'R':
+					surface = SurfaceCalculator.rectangularRoom(dimensions[0], dimensions[1], dimensions[2]);
+					break;
+				case 'C':
+					surface = SurfaceCalculator.cylindricalRoom(dimensions[0], dimensions[1]);
+					break;
+				}
+				// calculate required cans of paint
+				cans = PaintRequiredCalculator.numberOfCans(surface);
+				// and set new value
+				customer.setPaintCans(cans);
 			}
-			// calculate required cans of paint
-			cans = PaintRequiredCalculator.numberOfCans(surface);
-			// and set new value
-			customer.setPaintCans(cans);
+			
+			System.out.println("\nEdited " + customer);
 		}
-		
-		System.out.println("\nEdited " + customer);
 
 	}
 
@@ -206,21 +211,24 @@ public class CalculateMenu {
 		return customerList;
 	}
 	
-	// get 
+	// get index customer given ID
 	private static int getIndexCustomer(ArrayList<Customer> customerList) {
 		int idToSearch;
 		
+		if ( customerList.size() > 0)
 		// until you enter the correct id number
-		do {
-			idToSearch = MyScanner.getInt("Enter ID customer: ");
-			
-			for (int i = 0; i < customerList.size(); i++)
-				if (customerList.get(i).getId() == idToSearch) {
-					return i;
-				}
-			System.out.println("There is no client with id " + idToSearch);
-		} while ( true );
+			do {
+				idToSearch = MyScanner.getInt("Enter ID customer: ");
+				
+				for (int i = 0; i < customerList.size(); i++)
+					if (customerList.get(i).getId() == idToSearch) {
+						return i;
+					}
+				System.out.println("There is no client with id " + idToSearch);
+			} while ( true );
+		else
+			System.out.println("There is no clients on the list ");
+		return -1;
 	}
-
 
 }

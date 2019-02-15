@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Bogdan Pasterak
  * POP Assignment
  * tutor Angela Mercy
- * Letterkenny Training Center
+ * Letterkenny Training Centre
  * 15/02/2019
  *
  */

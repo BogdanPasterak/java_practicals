@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SurfaceCalculatorTest" project="POPAssigment" tests="9" started="9" failures="0" errors="0" ignored="0">
+  <testsuite name="differentCoatTest.SurfaceCalculatorTest" time="0.0">
+    <testcase name="testSquareRoomH2_4S3_22" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+    <testcase name="testSquareRoomH2_77S3" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+    <testcase name="testSquareRoomH2S3" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+    <testcase name="testCylindricaRoomH2_8D3" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+    <testcase name="testRectangularRoomH2_8L3_5W4_2" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+    <testcase name="testRectangularRoomH2L3W4" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+    <testcase name="testCylindricaRoomH2D2" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+    <testcase name="testSquareRoomH2S5_3" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+    <testcase name="testCylindricaRoomH2_8D2_2" classname="differentCoatTest.SurfaceCalculatorTest" time="0.0"/>
+  </testsuite>
+</testrun>

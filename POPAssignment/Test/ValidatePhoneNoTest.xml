@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ValidatePhoneNoTest" project="POPAssigment" tests="25" started="25" failures="0" errors="0" ignored="0">
+  <testsuite name="differentCoatTest.ValidatePhoneNoTest" time="0.0">
+    <testcase name="testFalse15" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse16" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse17" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse18" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse19" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse20" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse21" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse22" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse23" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse24" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testFalse25" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue01" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue02" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue03" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue04" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue05" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue06" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue07" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue08" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue09" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue10" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue11" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue12" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue13" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+    <testcase name="testTrue14" classname="differentCoatTest.ValidatePhoneNoTest" time="0.0"/>
+  </testsuite>
+</testrun>

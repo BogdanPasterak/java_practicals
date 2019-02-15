@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PaintRequiredCalculatorTest" project="POPAssigment" tests="9" started="9" failures="0" errors="0" ignored="0">
+  <testsuite name="differentCoatTest.PaintRequiredCalculatorTest" time="0.0">
+    <testcase name="numberOfCansTestEquals14" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+    <testcase name="numberOfCansTestEquals28" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+    <testcase name="numberOfCansTest0" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+    <testcase name="numberOfCansTest128_64" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+    <testcase name="numberOfCansTestMinus74_2" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+    <testcase name="numberOfCansTestLess14" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+    <testcase name="numberOfCansTestLess28" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+    <testcase name="numberOfCansTestMore14" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+    <testcase name="numberOfCansTestMore28" classname="differentCoatTest.PaintRequiredCalculatorTest" time="0.0"/>
+  </testsuite>
+</testrun>

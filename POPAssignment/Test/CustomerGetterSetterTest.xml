@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CustomerGetterSetterTest" project="POPAssigment" tests="15" started="15" failures="0" errors="0" ignored="0">
+  <testsuite name="differentCoatTest.CustomerGetterSetterTest" time="0.006">
+    <testcase name="testSetNameWithTab" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testGetPhone" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testSetPhoneWithTab" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testGetName" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testGetPaintCans" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testGetNewCustomerNumberData" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testGetNewCustomerWrongOrder" classname="differentCoatTest.CustomerGetterSetterTest" time="0.001"/>
+    <testcase name="testGetNewCustomerNumberDataOver" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testGetNewCustomerNumberDataTrim" classname="differentCoatTest.CustomerGetterSetterTest" time="0.001"/>
+    <testcase name="testGetNewCustomerBadInt2" classname="differentCoatTest.CustomerGetterSetterTest" time="0.001"/>
+    <testcase name="testSetPaintCans" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testSetName" classname="differentCoatTest.CustomerGetterSetterTest" time="0.001"/>
+    <testcase name="testToSave" classname="differentCoatTest.CustomerGetterSetterTest" time="0.0"/>
+    <testcase name="testGetNewCustomerBadInt" classname="differentCoatTest.CustomerGetterSetterTest" time="0.001"/>
+    <testcase name="testSetPhone" classname="differentCoatTest.CustomerGetterSetterTest" time="0.001"/>
+  </testsuite>
+</testrun>

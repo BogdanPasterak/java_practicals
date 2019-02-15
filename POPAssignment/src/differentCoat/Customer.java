@@ -26,7 +26,7 @@ public class Customer implements Serializable {
 		this();
 		setName(name);
 		setPhone(phone);
-		this.paintCans = paintCans;
+		setPaintCans(paintCans);
 	}
 
 	// getters and setters
@@ -50,6 +50,8 @@ public class Customer implements Serializable {
 		return paintCans;
 	}
 	public void setPaintCans(int paintCans) {
+		if (paintCans < 0 || paintCans > 100 )
+			paintCans = 0;
 		this.paintCans = paintCans;
 	}
 	// id only getter

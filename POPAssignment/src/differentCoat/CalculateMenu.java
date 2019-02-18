@@ -53,6 +53,8 @@ public class CalculateMenu {
 		// print using toString()
 		if (index != -1)
 			System.out.println("\n" + customerList.get(index));
+		else 
+			System.out.println("The list of clients is empty");
 	}
 
 	public static void removeCustomer(ArrayList<Customer> customerList) {
@@ -66,6 +68,8 @@ public class CalculateMenu {
 			System.out.println("\nRemmove " + customerList.get(index));
 			customerList.remove(index);
 		}
+		else 
+			System.out.println("The list of clients is empty");
 	}
 
 	public static void displayCustomers(ArrayList<Customer> customerList) {
@@ -133,6 +137,8 @@ public class CalculateMenu {
 			
 			System.out.println("\nEdited " + customer);
 		}
+		else 
+			System.out.println("The list of clients is empty");
 
 	}
 
